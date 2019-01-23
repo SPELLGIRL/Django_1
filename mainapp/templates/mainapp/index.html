@@ -96,27 +96,8 @@
         </div>
 
         <div class="promo">
-            <div class="container">
-                <div class="split">
-                    <section class="background split-1__all hhpb split-1__1">
-                        <h4 class="exclusive-h4">exclusive</h4>
-                        <h2 class="exclusive-h2">Fishnet Chair</h2>
-                        <p class="exclusive-p">Seat and back with upholstery made of&nbsp;cold cure foam. Steel
-                            frame, available in&nbsp;matt powder-coated black or&nbsp;highly polished chrome.</p>
-                        <a class="background button button-order" href="/details">Order Us<img
-                                src="{% static 'img/arrow.png' %}"
-                                alt="arrow" class="arrow"></a>
-                    </section>
-                    <section class="background split-1__all hhpb split-1__2 ">
-                        <h4 class="exclusive-h4">exclusive</h4>
-                        <h2 class="exclusive-h2">Fishnet Chair</h2>
-                        <p class="exclusive-p">Seat and back with upholstery made of&nbsp;cold cure foam. Steel
-                            frame, available in&nbsp;matt powder-coated black or&nbsp;highly polished chrome.</p>
-                        <a class="background button button-order" href="/details">Order Us<img
-                                src="{% static 'img/arrow.png' %}"
-                                alt="arrow" class="arrow"></a>
-                    </section>
-                </div>
+            <div class="promo">
+                {% include 'mainapp/include/inc_promo.html' %}
             </div>
         </div>
 
@@ -300,4 +281,3 @@
         </div>
     </main>
 {% endblock %}
-

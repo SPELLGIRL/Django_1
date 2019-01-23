@@ -1,4 +1,5 @@
 from django.shortcuts import render
+import datetime
 
 # Create your views here.
 
@@ -9,10 +10,12 @@ links_menu = [
     {'href': 'showroom', 'name': 'SHOWROOM'},
     {'href': 'contacts', 'name': 'CONTACT'}
 ]
+
 content = {
     'title': '',
     'links_menu': links_menu
 }
+
 
 def index(request):
     content['title'] = 'главная'
