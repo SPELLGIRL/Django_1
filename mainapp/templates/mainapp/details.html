@@ -27,14 +27,14 @@
                 <div class="container">
                     <div class="background padding-content detail-header">
                         <header class="header">
-                            <a class="logo" href="/"><img src="{% static 'img/logo.svg' %}" alt="logo"></a>
+                            <a class="logo" href="{% url 'home' %}"><img src="{% static 'img/logo.svg' %}" alt="logo"></a>
                             <nav>
                                 <ul class="menu">
-                                    <li class="menu__list"><a href="/" class="menu__link">HOME</a></li>
-                                    <li class="menu__list"><a href="/products" class="menu__link menu__link_active">PRODUCTS</a></li>
+                                    <li class="menu__list"><a href="{% url 'home' %}" class="menu__link">HOME</a></li>
+                                    <li class="menu__list"><a href="{% url 'catalog' %}" class="menu__link menu__link_active">PRODUCTS</a></li>
                                     <li class="menu__list"><a href="#" class="menu__link">HISTORY</a></li>
                                     <li class="menu__list"><a href="#" class="menu__link">SHOWROOM</a></li>
-                                    <li class="menu__list"><a href="/contacts" class="menu__link">CONTACT</a></li>
+                                    <li class="menu__list"><a href="{% url 'contacts' %}" class="menu__link">CONTACT</a></li>
                                     <li class="menu__list search"><img src="{% static 'img/search.svg' %}" alt="search"></li>
                                 </ul>
                             </nav>
@@ -73,7 +73,7 @@
                             <h4 class="detail-h4">Hot Deal</h4>
 
                             <h1 class="detail-h1">$&nbsp;<span class="price">36.7</span>/sq</h1>
-                            <a class="button button-order button-order_detail" href="/details">Order Us <i class="fas fa-angle-right"></i><!-- <img src="{% static 'img/arrow-white.svg' %}" alt="arrow" class="arrow"> --></a>
+                            <a class="button button-order button-order_detail" href="{% url 'product' %}">Order Us <i class="fas fa-angle-right"></i><!-- <img src="{% static 'img/arrow-white.svg' %}" alt="arrow" class="arrow"> --></a>
                             <div class="detail-text">
                                 <p class="detail-p">The majesty of&nbsp;Mountains&nbsp;&mdash; Ugmonk style.</p>
                                 <p class="detail-p">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do&nbsp;eiusmod tempor incididunt ut&nbsp;labore</p>
@@ -95,21 +95,21 @@
                         <div class="trending-products">
                             <div class="background products__item trendings__item" style="background-image: url({% static 'img/product-11.jpg' %})">
                                 <div class="background hhpb products__item trendings__item products__item_hover">
-                                    <a href="/details" class="button button-arrow"><img src="{% static 'img/arrow.png' %}" alt="arrow" class="arrow-big"></a>
+                                    <a href="{% url 'product' %}" class="button button-arrow"><img src="{% static 'img/arrow.png' %}" alt="arrow" class="arrow-big"></a>
                                     <h4 class="products__item_hover_h4">Fishnet Chair</h4>
                                     <p class="products__item_hover_p">Seat and back with upholstery made of&nbsp;cold cure foam</p>
                                 </div>
                             </div>
                             <div class="background products__item trendings__item" style="background-image: url({% static 'img/product-21.jpg' %})">
                                 <div class="background hhpb products__item trendings__item products__item_hover">
-                                    <a href="/details" class="button button-arrow"><img src="{% static 'img/arrow.png' %}" alt="arrow" class="arrow-big"></a>
+                                    <a href="{% url 'product' %}" class="button button-arrow"><img src="{% static 'img/arrow.png' %}" alt="arrow" class="arrow-big"></a>
                                     <h4 class="products__item_hover_h4">Fishnet Chair</h4>
                                     <p class="products__item_hover_p">Seat and back with upholstery made of&nbsp;cold cure foam</p>
                                 </div>
                             </div>
                             <div class="background products__item trendings__item" style="background-image: url({% static 'img/product-31.jpg' %})">
                                 <div class="background hhpb products__item trendings__item products__item_hover">
-                                    <a href="/details" class="button button-arrow"><img src="{% static 'img/arrow.png' %}" alt="arrow" class="arrow-big"></a>
+                                    <a href="{% url 'product' %}" class="button button-arrow"><img src="{% static 'img/arrow.png' %}" alt="arrow" class="arrow-big"></a>
                                     <h4 class="products__item_hover_h4">Fishnet Chair</h4>
                                     <p class="products__item_hover_p">Seat and back with upholstery made of&nbsp;cold cure foam</p>
                                 </div>

@@ -21,14 +21,14 @@
                 <div class="container">
                     <div class="background padding-content products-header">
                         <header class="header">
-                            <a class="logo" href="/"><img src="{% static 'img/logo.svg' %}" alt="logo"></a>
+                            <a class="logo" href="{% url 'home' %}"><img src="{% static 'img/logo.svg' %}" alt="logo"></a>
                             <nav>
                                 <ul class="menu">
-                                    <li class="menu__list"><a href="/" class="menu__link">HOME</a></li>
-                                    <li class="menu__list"><a href="/products" class="menu__link">PRODUCTS</a></li>
+                                    <li class="menu__list"><a href="{% url 'home' %}" class="menu__link">HOME</a></li>
+                                    <li class="menu__list"><a href="{% url 'catalog' %}" class="menu__link">PRODUCTS</a></li>
                                     <li class="menu__list"><a href="#" class="menu__link">HISTORY</a></li>
                                     <li class="menu__list"><a href="#" class="menu__link">SHOWROOM</a></li>
-                                    <li class="menu__list"><a href="/contacts" class="menu__link menu__link_active">CONTACT</a></li>
+                                    <li class="menu__list"><a href="{% url 'contacts' %}" class="menu__link menu__link_active">CONTACT</a></li>
                                     <li class="menu__list search"><img src="{% static 'img/search.svg' %}" alt="search"></li>
                                 </ul>
                             </nav>
