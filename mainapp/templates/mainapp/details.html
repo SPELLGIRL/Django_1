@@ -1,184 +1,120 @@
-<!DOCTYPE html>
+{% extends 'mainapp/base.html' %}
 {% load static %}
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-
-<body>
-
+{% block js %}
+    {{ block.super }}
     <script>
         function big_img(a) {
             document.big_img.src = a
         }
 
     </script>
-
-    <div class="wrapper">
-
-        <div class="top">
-
-            <div class="detail-head">
-                <div class="container">
-                    <div class="background padding-content detail-header">
-                        <header class="header">
-                            <a class="logo" href="{% url 'home' %}"><img src="{% static 'img/logo.svg' %}" alt="logo"></a>
-                            <nav>
-                                <ul class="menu">
-                                    <li class="menu__list"><a href="{% url 'home' %}" class="menu__link">HOME</a></li>
-                                    <li class="menu__list"><a href="{% url 'catalog' %}" class="menu__link menu__link_active">PRODUCTS</a></li>
-                                    <li class="menu__list"><a href="#" class="menu__link">HISTORY</a></li>
-                                    <li class="menu__list"><a href="#" class="menu__link">SHOWROOM</a></li>
-                                    <li class="menu__list"><a href="{% url 'contacts' %}" class="menu__link">CONTACT</a></li>
-                                    <li class="menu__list search"><img src="{% static 'img/search.svg' %}" alt="search"></li>
-                                </ul>
-                            </nav>
-                        </header>
-                    </div>
-                </div>
+{% endblock %}
+{% block content %}
+    <div class="detail-head">
+        <div class="container">
+            <div class="background padding-content detail-header">
+                <header class="header">
+                    <a class="logo" href="{% url 'home' %}"><img src="{% static 'img/logo.svg' %}" alt="logo"></a>
+                    <nav>
+                        {% include 'mainapp/widgets/main_menu.html' %}
+                    </nav>
+                </header>
             </div>
-
-            <div class="detail-menu-block">
-                <div class="container">
-                    <ul class="background detail-menu">
-                        <li class="menu__list"><a href="#" class="menu__link detail-menu__link detail-menu__link_active">All</a></li>
-                        <li class="menu__list"><a href="#" class="menu__link detail-menu__link">HOME</a></li>
-                        <li class="menu__list"><a href="#" class="menu__link detail-menu__link">OFFICE</a></li>
-                        <li class="menu__list"><a href="#" class="menu__link detail-menu__link">FURNITURE</a></li>
-                        <li class="menu__list"><a href="#" class="menu__link detail-menu__link">MODERN</a></li>
-                        <li class="menu__list"><a href="#" class="menu__link detail-menu__link">CLASSIC</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="description">
-                <div class="container">
-                    <div class="split padding-description">
-                        <div class="split-3__all hhpb split-3__1">
-
-                            <img src="{% static 'img/red-chair.jpg' %}" class="big-img" alt="Big image">
-                            <div class="colors">
-                                <a href="javascript:big_img ('{% static 'img/blue-chair.jpg' %}')" class="background small-img blue-chair"></a>
-                                <a href="javascript:big_img ('{% static 'img/purple-chair.jpg' %}')" class="background small-img purple-chair"></a>
-                                <a href="javascript:big_img ('{% static 'img/red-chair.jpg' %}')" class="background small-img red-chair"></a>
-                            </div>
-                        </div>
-                        <div class="split-3__all hhpb split-3__2">
-                            <h2 class="detail-h2">Fishnet Chair</h2>
-                            <h4 class="detail-h4">Hot Deal</h4>
-
-                            <h1 class="detail-h1">$&nbsp;<span class="price">36.7</span>/sq</h1>
-                            <a class="button button-order button-order_detail" href="{% url 'product' %}">Order Us <i class="fas fa-angle-right"></i><!-- <img src="{% static 'img/arrow-white.svg' %}" alt="arrow" class="arrow"> --></a>
-                            <div class="detail-text">
-                                <p class="detail-p">The majesty of&nbsp;Mountains&nbsp;&mdash; Ugmonk style.</p>
-                                <p class="detail-p">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do&nbsp;eiusmod tempor incididunt ut&nbsp;labore</p>
-                                <p class="detail-p">et&nbsp;dolore magna aliqua. Ut&nbsp;enim ad&nbsp;minim veniam, quis nostrud exercitation ullamco laboris nisi ut&nbsp;aliquip ex&nbsp;ea&nbsp;commodo consequat.</p>
-                                <p class="detail-p">Duis aute irure dolor in&nbsp;reprehenderit in&nbsp;voluptate velit esse cillum dolore eu&nbsp;fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="trending">
-                <div class="container">
-                    <div class="background padding-content padding-products-block products-block">
-                        <div class="products-heading trendings-heading">
-                            <p class="trendings-title">Related Products</p>
-                            <a class="explore-all" href="products">explore all <i class="fas fa-angle-right"></i></a>
-                        </div>
-                        <div class="trending-products">
-                            <div class="background products__item trendings__item" style="background-image: url({% static 'img/product-11.jpg' %})">
-                                <div class="background hhpb products__item trendings__item products__item_hover">
-                                    <a href="{% url 'product' %}" class="button button-arrow"><img src="{% static 'img/arrow.png' %}" alt="arrow" class="arrow-big"></a>
-                                    <h4 class="products__item_hover_h4">Fishnet Chair</h4>
-                                    <p class="products__item_hover_p">Seat and back with upholstery made of&nbsp;cold cure foam</p>
-                                </div>
-                            </div>
-                            <div class="background products__item trendings__item" style="background-image: url({% static 'img/product-21.jpg' %})">
-                                <div class="background hhpb products__item trendings__item products__item_hover">
-                                    <a href="{% url 'product' %}" class="button button-arrow"><img src="{% static 'img/arrow.png' %}" alt="arrow" class="arrow-big"></a>
-                                    <h4 class="products__item_hover_h4">Fishnet Chair</h4>
-                                    <p class="products__item_hover_p">Seat and back with upholstery made of&nbsp;cold cure foam</p>
-                                </div>
-                            </div>
-                            <div class="background products__item trendings__item" style="background-image: url({% static 'img/product-31.jpg' %})">
-                                <div class="background hhpb products__item trendings__item products__item_hover">
-                                    <a href="{% url 'product' %}" class="button button-arrow"><img src="{% static 'img/arrow.png' %}" alt="arrow" class="arrow-big"></a>
-                                    <h4 class="products__item_hover_h4">Fishnet Chair</h4>
-                                    <p class="products__item_hover_p">Seat and back with upholstery made of&nbsp;cold cure foam</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
+    </div>
 
-        <div class="bottom">
-            <div class="container">
-                <div class="background padding-content contacts">
-                    <section class="contacts-middle">
-                        <div class="contact-us">
-                            <h4 class="contacts-h4">Contact Us</h4>
-                            <div class="contact-us-p-box">
-                                <p class="contact-us-p">132A Bridge Road Richmond VIC&nbsp;Australia.</p>
-                                <p class="contact-us-p">Talk to&nbsp;us on&nbsp;1300&nbsp;132 info@interior.com</p>
-                            </div>
-                        </div>
-                        <div class="useful">
-                            <h4 class="contacts-h4">Useful Information</h4>
-                            <div class="useful-a-box">
-                                <div class="useful-link-box">
-                                    <a href="#" class="useful-link">Sales terms</a>
-                                    <a href="#" class="useful-link">Customer care</a>
-                                    <a href="#" class="useful-link">Delivery</a>
-                                </div>
-                                <div class="useful-link-box">
-                                    <a href="#" class="useful-link">Architect accounts</a>
-                                    <a href="#" class="useful-link">Careers</a>
-                                    <a href="#" class="useful-link">Exchanges &amp;&nbsp;returns</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="subscribe">
-                            <h4 class="contacts-h4">Let&rsquo;s Stay in&nbsp;Touch!</h4>
-                            <p class="subscribe-p">Suscribe to&nbsp;know about our latest news, products and special offers just for suscribers.</p>
-                            <form class="email">
-                                <input type="email" placeholder="your email address" class="input-email">
-                                <button type="submit" class="button-send"></button>
-                            </form>
-                        </div>
-                    </section>
-                    <footer class="footer">
-                        <p class="copyright">&copy;&nbsp;Copyright&nbsp;&mdash; INTERIOR 2016. All Rights Reserved.</p>
-                        <div class="social-links">
-                            <a class="icon-link" href="#">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a class="icon-link" href="#">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a class="icon-link" href="#">
-                                <i class="fab fa-google-plus-g"></i>
-                            </a>
-                            <a class="icon-link" href="#">
-                                <i class="fab fa-pinterest-p"></i>
-                            </a>
-                        </div>
-                        <p class="copyright">Terms &amp;&nbsp;Conditions&nbsp;/ Privacy policy &amp;&nbsp;Cookies</p>
-                    </footer>
+    <div class="detail-menu-block">
+        <div class="container">
+            <ul class="background detail-menu">
+                <li class="menu__list"><a href="#" class="menu__link detail-menu__link detail-menu__link_active">All</a>
+                </li>
+                <li class="menu__list"><a href="#" class="menu__link detail-menu__link">HOME</a></li>
+                <li class="menu__list"><a href="#" class="menu__link detail-menu__link">OFFICE</a></li>
+                <li class="menu__list"><a href="#" class="menu__link detail-menu__link">FURNITURE</a></li>
+                <li class="menu__list"><a href="#" class="menu__link detail-menu__link">MODERN</a></li>
+                <li class="menu__list"><a href="#" class="menu__link detail-menu__link">CLASSIC</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="description">
+        <div class="container">
+            <div class="split padding-description">
+                <div class="split-3__all hhpb split-3__1">
+
+                    <img src="{% static 'img/red-chair.jpg' %}" class="big-img" alt="Big image">
+                    <div class="colors">
+                        <a href="javascript:big_img ('{% static 'img/blue-chair.jpg' %}')"
+                           class="background small-img blue-chair"></a>
+                        <a href="javascript:big_img ('{% static 'img/purple-chair.jpg' %}')"
+                           class="background small-img purple-chair"></a>
+                        <a href="javascript:big_img ('{% static 'img/red-chair.jpg' %}')"
+                           class="background small-img red-chair"></a>
+                    </div>
+                </div>
+                <div class="split-3__all hhpb split-3__2">
+                    <h2 class="detail-h2">Fishnet Chair</h2>
+                    <h4 class="detail-h4">Hot Deal</h4>
+
+                    <h1 class="detail-h1">$&nbsp;<span class="price">36.7</span>/sq</h1>
+                    <a class="button button-order button-order_detail" href="{% url 'product' %}">Order Us <i
+                            class="fas fa-angle-right"></i>
+                        <!-- <img src="{% static 'img/arrow-white.svg' %}" alt="arrow" class="arrow"> --></a>
+                    <div class="detail-text">
+                        <p class="detail-p">The majesty of&nbsp;Mountains&nbsp;&mdash; Ugmonk style.</p>
+                        <p class="detail-p">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do&nbsp;eiusmod
+                            tempor incididunt ut&nbsp;labore</p>
+                        <p class="detail-p">et&nbsp;dolore magna aliqua. Ut&nbsp;enim ad&nbsp;minim veniam, quis nostrud
+                            exercitation ullamco laboris nisi ut&nbsp;aliquip ex&nbsp;ea&nbsp;commodo consequat.</p>
+                        <p class="detail-p">Duis aute irure dolor in&nbsp;reprehenderit in&nbsp;voluptate velit esse
+                            cillum dolore eu&nbsp;fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                            proident.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-</body>
-
-</html>
+    <div class="trending">
+        <div class="container">
+            <div class="background padding-content padding-products-block products-block">
+                <div class="products-heading trendings-heading">
+                    <p class="trendings-title">Related Products</p>
+                    <a class="explore-all" href="products">explore all <i class="fas fa-angle-right"></i></a>
+                </div>
+                <div class="trending-products">
+                    <div class="background products__item trendings__item"
+                         style="background-image: url({% static 'img/product-11.jpg' %})">
+                        <div class="background hhpb products__item trendings__item products__item_hover">
+                            <a href="{% url 'product' %}" class="button button-arrow"><img
+                                    src="{% static 'img/arrow.png' %}" alt="arrow" class="arrow-big"></a>
+                            <h4 class="products__item_hover_h4">Fishnet Chair</h4>
+                            <p class="products__item_hover_p">Seat and back with upholstery made of&nbsp;cold cure
+                                foam</p>
+                        </div>
+                    </div>
+                    <div class="background products__item trendings__item"
+                         style="background-image: url({% static 'img/product-21.jpg' %})">
+                        <div class="background hhpb products__item trendings__item products__item_hover">
+                            <a href="{% url 'product' %}" class="button button-arrow"><img
+                                    src="{% static 'img/arrow.png' %}" alt="arrow" class="arrow-big"></a>
+                            <h4 class="products__item_hover_h4">Fishnet Chair</h4>
+                            <p class="products__item_hover_p">Seat and back with upholstery made of&nbsp;cold cure
+                                foam</p>
+                        </div>
+                    </div>
+                    <div class="background products__item trendings__item"
+                         style="background-image: url({% static 'img/product-31.jpg' %})">
+                        <div class="background hhpb products__item trendings__item products__item_hover">
+                            <a href="{% url 'product' %}" class="button button-arrow"><img
+                                    src="{% static 'img/arrow.png' %}" alt="arrow" class="arrow-big"></a>
+                            <h4 class="products__item_hover_h4">Fishnet Chair</h4>
+                            <p class="products__item_hover_p">Seat and back with upholstery made of&nbsp;cold cure
+                                foam</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
