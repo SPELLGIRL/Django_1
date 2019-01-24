@@ -21,15 +21,7 @@
         <div class="container">
             <div class="padding-content padding-products-block padding-products-block__menu products-block">
                 <div class="products-heading">
-                    <ul class="menu">
-                        <li class="menu__list"><a href="#"
-                                                  class="menu__link products-menu__link menu__link_active">All</a></li>
-                        <li class="menu__list"><a href="#" class="menu__link products-menu__link">HOME</a></li>
-                        <li class="menu__list"><a href="#" class="menu__link products-menu__link">OFFICE</a></li>
-                        <li class="menu__list"><a href="#" class="menu__link products-menu__link">FURNITURE</a></li>
-                        <li class="menu__list"><a href="#" class="menu__link products-menu__link">MODERN</a></li>
-                        <li class="menu__list"><a href="#" class="menu__link products-menu__link">CLASSIC</a></li>
-                    </ul>
+                    {% include 'mainapp/widgets/catalog_menu.html' %}
                 </div>
                 <div class="trending-products">
                     <div class="background products__item trendings__item"

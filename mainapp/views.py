@@ -1,47 +1,49 @@
 from django.shortcuts import render
-import datetime
+from django.http import HttpRequest
+import json
 
 # Create your views here.
 
-links_menu = [
-    {'href': 'home', 'name': 'HOME'},
-    {'href': 'catalog', 'name': 'PRODUCTS'},
-    {'href': 'history', 'name': 'HISTORY'},
-    {'href': 'showroom', 'name': 'SHOWROOM'},
-    {'href': 'contacts', 'name': 'CONTACT'}
-]
+
+with open('static/data/main_menu_links.json', 'r', encoding='utf-8') as mml:
+    main_menu_links = json.load(mml)
+
+with open('static/data/catalog_menu_links.json', 'r', encoding='utf-8') as cml:
+    catalog_menu_links = json.load(cml)
 
 content = {
-    'title': '',
-    'links_menu': links_menu
+    'main_menu_links': main_menu_links,
+    'products_menu_category': catalog_menu_links
 }
 
 
-def index(request):
+def index(request: HttpRequest):
     content['title'] = 'главная'
     return render(request, 'mainapp/index.html', content)
 
 
-def products(request):
+def products(request: HttpRequest, current_product_category='all'):
     content['title'] = 'каталог товаров'
+    content['current_product_category'] = current_product_category
     return render(request, 'mainapp/products.html', content)
 
 
-def details(request):
+def details(request: HttpRequest):
+    content['current_product_category'] = ''
     content['title'] = 'товар'
     return render(request, 'mainapp/details.html', content)
 
 
-def history(request):
+def history(request: HttpRequest):
     content['title'] = 'временная страница'
     return render(request, 'mainapp/history.html', content)
 
 
-def showroom(request):
+def showroom(request: HttpRequest):
     content['title'] = 'временная страница'
     return render(request, 'mainapp/showroom.html', content)
 
 
-def contacts(request):
+def contacts(request: HttpRequest):
     content['title'] = 'контакты'
     return render(request, 'mainapp/contacts.html', content)

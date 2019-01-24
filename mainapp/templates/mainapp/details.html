@@ -25,15 +25,7 @@
 
     <div class="detail-menu-block">
         <div class="container">
-            <ul class="background detail-menu">
-                <li class="menu__list"><a href="#" class="menu__link detail-menu__link detail-menu__link_active">All</a>
-                </li>
-                <li class="menu__list"><a href="#" class="menu__link detail-menu__link">HOME</a></li>
-                <li class="menu__list"><a href="#" class="menu__link detail-menu__link">OFFICE</a></li>
-                <li class="menu__list"><a href="#" class="menu__link detail-menu__link">FURNITURE</a></li>
-                <li class="menu__list"><a href="#" class="menu__link detail-menu__link">MODERN</a></li>
-                <li class="menu__list"><a href="#" class="menu__link detail-menu__link">CLASSIC</a></li>
-            </ul>
+            {% include 'mainapp/widgets/catalog_menu.html' %}
         </div>
     </div>
 
@@ -80,7 +72,7 @@
             <div class="background padding-content padding-products-block products-block">
                 <div class="products-heading trendings-heading">
                     <p class="trendings-title">Related Products</p>
-                    <a class="explore-all" href="products">explore all <i class="fas fa-angle-right"></i></a>
+                    <a class="explore-all" href="{% url 'catalog' %}">explore all <i class="fas fa-angle-right"></i></a>
                 </div>
                 <div class="trending-products">
                     <div class="background products__item trendings__item"
