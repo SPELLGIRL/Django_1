@@ -40,9 +40,10 @@ def products(request: HttpRequest, current_product_category='all'):
     return render(request, 'mainapp/products.html', content)
 
 
-def details(request: HttpRequest):
+def details(request: HttpRequest, color='red'):
     content['current_product_category'] = ''
     content['title'] = 'товар'
+    content['color'] = color
     return render(request, 'mainapp/details.html', content)
 
 

@@ -1,14 +1,5 @@
 {% extends 'mainapp/base.html' %}
 {% load static %}
-{% block js %}
-    {{ block.super }}
-    <script>
-        function big_img(a) {
-            document.big_img.src = a
-        }
-
-    </script>
-{% endblock %}
 {% block content %}
     <div class="detail-head">
         <div class="container">
@@ -34,13 +25,13 @@
             <div class="split padding-description">
                 <div class="split-3__all hhpb split-3__1">
 
-                    <img src="{% static 'img/red-chair.jpg' %}" class="big-img" alt="Big image">
+                    <img src="{% static 'img/' %}{{ color }}-chair.jpg" class="big-img" alt="Big image">
                     <div class="colors">
-                        <a href="javascript:big_img ('{% static 'img/blue-chair.jpg' %}')"
+                        <a href="{% url 'product' %}blue"
                            class="background small-img blue-chair"></a>
-                        <a href="javascript:big_img ('{% static 'img/purple-chair.jpg' %}')"
+                        <a href="{% url 'product' %}purple"
                            class="background small-img purple-chair"></a>
-                        <a href="javascript:big_img ('{% static 'img/red-chair.jpg' %}')"
+                        <a href="{% url 'product' %}red"
                            class="background small-img red-chair"></a>
                     </div>
                 </div>

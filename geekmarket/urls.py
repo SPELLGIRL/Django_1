@@ -24,6 +24,7 @@ urlpatterns = [
     path('products/', controller.products, name='catalog'),
     path('products/<str:current_product_category>/', controller.products, name='catalog'),
     path('details/', controller.details, name='product'),
+    path('details/<str:color>/', controller.details, name='product'),
     path('history/', controller.history, name='history'),
     path('showroom/', controller.showroom, name='showroom'),
     path('contacts/', controller.contacts, name='contacts')
