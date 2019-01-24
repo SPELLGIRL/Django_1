@@ -11,9 +11,21 @@ with open('static/data/main_menu_links.json', 'r', encoding='utf-8') as mml:
 with open('static/data/catalog_menu_links.json', 'r', encoding='utf-8') as cml:
     catalog_menu_links = json.load(cml)
 
+with open('static/data/trending_products.json', 'r', encoding='utf-8') as tp:
+    trending_products = json.load(tp)
+
+with open('static/data/new_products.json', 'r', encoding='utf-8') as np:
+    new_products = json.load(np)
+
+with open('static/data/exclusive_products.json', 'r', encoding='utf-8') as ep:
+    exclusive_products = json.load(ep)
+
 content = {
     'main_menu_links': main_menu_links,
-    'products_menu_category': catalog_menu_links
+    'products_menu_category': catalog_menu_links,
+    'trending_products': trending_products,
+    'new_products': new_products,
+    'exclusive_products': exclusive_products
 }
 
 
