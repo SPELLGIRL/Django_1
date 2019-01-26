@@ -1347,10 +1347,6 @@ p {
     letter-spacing: 1.8px;
 }
 
-.detail-menu__link_active {
-    color: #212121;
-}
-
 .detail-menu {
     display: -webkit-box;
     display: -ms-flexbox;

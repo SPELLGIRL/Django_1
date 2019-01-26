@@ -1,353 +1,142 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block content %}
 
-<head>
-
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="/static/css/style.css">
-
-</head>
-
-<body>
-
-    <div class="wrapper">
-
-        <div class="top">
-
-            <div class="first">
-                <div class="container">
-                    <div class="background header-block padding-content slider slider-1">
-                        <header class="header">
-                            <a class="logo" href="/"><img src="/static/img/logo.svg" alt="logo"></a>
-                            <nav>
-                                <ul class="menu">
-                                    <li class="menu__list"><a href="" class="menu__link menu__link_active">HOME</a></li>
-                                    <li class="menu__list"><a href="products" class="menu__link">PRODUCTS</a></li>
-                                    <li class="menu__list"><a href="#" class="menu__link">HISTORY</a></li>
-                                    <li class="menu__list"><a href="#" class="menu__link">SHOWROOM</a></li>
-                                    <li class="menu__list"><a href="contacts" class="menu__link">CONTACT</a></li>
-                                    <li class="menu__list search"><img src="/static/img/search.svg" alt="search"></li>
-                                </ul>
-                            </nav>
-                        </header>
-                        <div class="hhpb">
-                            <h4 class="main-h4">TRENDING</h4>
-                            <h2 class="main-h2">Fishnet Chair</h2>
-                            <p class="main-p">Seat and back with upholstery made of&nbsp;cold cure foam. Steel frame,
-                                available in&nbsp;matt powder-coated black or&nbsp;highly polished chrome.</p>
-                            <a class="background button button-order" href="details">Order Us<img src="/static/img/arrow.png"
-                                    alt="arrow" class="arrow"></a>
-                        </div>
-                        <div class="pagination">
-                            <a href="#" class="circle"></a>
-                            <a href="#" class="circle circle_active"></a>
-                            <a href="#" class="circle"></a>
-                        </div>
-                    </div>
-                </div>
+<div class="first">
+    <div class="container">
+        <div class="background header-block padding-content slider slider-1">
+            <header class="header">
+                <a class="logo" href="{% url 'home' %}"><img src="{% static 'img/logo.svg' %}"
+                                                             alt="logo"></a>
+                <nav>
+                    {% include 'mainapp/widgets/main_menu.html' %}
+                </nav>
+            </header>
+            <div class="hhpb">
+                <h4 class="main-h4">TRENDING</h4>
+                <h2 class="main-h2">Fishnet Chair</h2>
+                <p class="main-p">Seat and back with upholstery made of&nbsp;cold cure foam. Steel frame,
+                    available in&nbsp;matt powder-coated black or&nbsp;highly polished chrome.</p>
+                <a class="background button button-order" href="{% url 'product' %}">Order Us<img
+                        src="{% static 'img/arrow.png' %}"
+                        alt="arrow" class="arrow"></a>
             </div>
-            <main>
-                <div class="new">
-                    <div class="container">
-                        <div class="background padding-content padding-products-block products-block">
-                            <div class="products-heading">
-                                <ul class="new-menu">
-                                    <li class="new-menu__list"><a href="#" class="new-menu__link new-menu__link_active">Featured</a></li>
-                                    <li class="new-menu__list"><a href="#" class="new-menu__link">New</a></li>
-                                </ul>
-                                <a class="explore-all" href="products">explore all <i class="fas fa-angle-right"></i></a>
-                            </div>
-                            <div class="new-products">
-                                <div class="background products__item" style="background-image: url(/static/img/product-1.jpg)">
-                                    <img src="/static/img/product-1.jpg" alt="">
-                                    <div class="background hhpb products__item products__item_hover">
-                                        <a href="details" class="button button-arrow"><img src="/static/img/arrow.png" alt="arrow"
-                                                class="arrow-big"></a>
-                                        <h4 class="products__item_hover_h4">Fishnet Chair</h4>
-                                        <p class="products__item_hover_p">Seat and back with upholstery made
-                                            of&nbsp;cold cure foam</p>
-                                    </div>
-                                </div>
-                                <div class="background products__item" style="background-image: url(/static/img/product-2.jpg)">
-                                    <img src="/static/img/product-2.jpg" alt="">
-                                    <div class="background hhpb products__item products__item_hover">
-                                        <a href="details" class="button button-arrow"><img src="/static/img/arrow.png" alt="arrow"
-                                                class="arrow-big"></a>
-                                        <h4 class="products__item_hover_h4">Fishnet Chair</h4>
-                                        <p class="products__item_hover_p">Seat and back with upholstery made
-                                            of&nbsp;cold cure foam</p>
-                                    </div>
-                                </div>
-                                <div class="background products__item" style="background-image: url(/static/img/product-3.jpg)">
-                                    <img src="/static/img/product-3.jpg" alt="">
-                                    <div class="background hhpb products__item products__item_hover">
-                                        <a href="details" class="button button-arrow"><img src="/static/img/arrow.png" alt="arrow"
-                                                class="arrow-big"></a>
-                                        <h4 class="products__item_hover_h4">Fishnet Chair</h4>
-                                        <p class="products__item_hover_p">Seat and back with upholstery made
-                                            of&nbsp;cold cure foam</p>
-                                    </div>
-                                </div>
-                                <div class="background products__item" style="background-image: url(/static/img/product-4.jpg)">
-                                    <img src="/static/img/product-4.jpg" alt="">
-                                    <div class="background hhpb products__item products__item_hover">
-                                        <a href="details" class="button button-arrow"><img src="/static/img/arrow.png" alt="arrow"
-                                                class="arrow-big"></a>
-                                        <h4 class="products__item_hover_h4">Fishnet Chair</h4>
-                                        <p class="products__item_hover_p">Seat and back with upholstery made
-                                            of&nbsp;cold cure foam</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="promo">
-                    <div class="container">
-                        <div class="split">
-                            <section class="background split-1__all hhpb split-1__1">
-                                <h4 class="exclusive-h4">exclusive</h4>
-                                <h2 class="exclusive-h2">Fishnet Chair</h2>
-                                <p class="exclusive-p">Seat and back with upholstery made of&nbsp;cold cure foam. Steel
-                                    frame, available in&nbsp;matt powder-coated black or&nbsp;highly polished chrome.</p>
-                                <a class="background button button-order" href="details">Order Us<img src="/static/img/arrow.png"
-                                        alt="arrow" class="arrow"></a>
-                            </section>
-                            <section class="background split-1__all hhpb split-1__2 ">
-                                <h4 class="exclusive-h4">exclusive</h4>
-                                <h2 class="exclusive-h2">Fishnet Chair</h2>
-                                <p class="exclusive-p">Seat and back with upholstery made of&nbsp;cold cure foam. Steel
-                                    frame, available in&nbsp;matt powder-coated black or&nbsp;highly polished chrome.</p>
-                                <a class="background button button-order" href="details">Order Us<img src="/static/img/arrow.png"
-                                        alt="arrow" class="arrow"></a>
-                            </section>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="trending">
-                    <div class="container">
-                        <div class="background padding-content padding-products-block products-block">
-                            <div class="products-heading trendings-heading">
-                                <p class="trendings-title">Trending Products</p>
-                                <a class="explore-all" href="products">explore all <i class="fas fa-angle-right"></i></a>
-                            </div>
-                            <div class="trending-products">
-                                <div class="background products__item trendings__item" style="background-image: url(/static/img/product-11.jpg)">
-                                    <div class="background hhpb products__item trendings__item products__item_hover">
-                                        <a href="details" class="button button-arrow"><img src="/static/img/arrow.png" alt="arrow"
-                                                class="arrow-big"></a>
-                                        <h4 class="products__item_hover_h4">Fishnet Chair</h4>
-                                        <p class="products__item_hover_p">Seat and back with upholstery made
-                                            of&nbsp;cold cure foam</p>
-                                    </div>
-                                </div>
-                                <div class="background products__item trendings__item" style="background-image: url(/static/img/product-21.jpg)">
-                                    <div class="background hhpb products__item trendings__item products__item_hover">
-                                        <a href="details" class="button button-arrow"><img src="/static/img/arrow.png" alt="arrow"
-                                                class="arrow-big"></a>
-                                        <h4 class="products__item_hover_h4">Fishnet Chair</h4>
-                                        <p class="products__item_hover_p">Seat and back with upholstery made
-                                            of&nbsp;cold cure foam</p>
-                                    </div>
-                                </div>
-                                <div class="background products__item trendings__item" style="background-image: url(/static/img/product-31.jpg)">
-                                    <div class="background hhpb products__item trendings__item products__item_hover">
-                                        <a href="details" class="button button-arrow"><img src="/static/img/arrow.png" alt="arrow"
-                                                class="arrow-big"></a>
-                                        <h4 class="products__item_hover_h4">Fishnet Chair</h4>
-                                        <p class="products__item_hover_p">Seat and back with upholstery made
-                                            of&nbsp;cold cure foam</p>
-                                    </div>
-                                </div>
-                                <div class="background products__item trendings__item" style="background-image: url(/static/img/product-41.jpg)">
-                                    <div class="background hhpb products__item trendings__item products__item_hover">
-                                        <a href="details" class="button button-arrow"><img src="/static/img/arrow.png" alt="arrow"
-                                                class="arrow-big"></a>
-                                        <h4 class="products__item_hover_h4">Fishnet Chair</h4>
-                                        <p class="products__item_hover_p">Seat and back with upholstery made
-                                            of&nbsp;cold cure foam</p>
-                                    </div>
-                                </div>
-                                <div class="background products__item trendings__item" style="background-image: url(/static/img/product-5.jpg)">
-                                    <div class="background hhpb products__item trendings__item products__item_hover">
-                                        <a href="details" class="button button-arrow"><img src="/static/img/arrow.png" alt="arrow"
-                                                class="arrow-big"></a>
-                                        <h4 class="products__item_hover_h4">Fishnet Chair</h4>
-                                        <p class="products__item_hover_p">Seat and back with upholstery made
-                                            of&nbsp;cold cure foam</p>
-                                    </div>
-                                </div>
-                                <div class="background products__item trendings__item" style="background-image: url(/static/img/product-6.jpg)">
-                                    <div class="background hhpb products__item trendings__item products__item_hover">
-                                        <a href="details" class="button button-arrow"><img src="/static/img/arrow.png" alt="arrow"
-                                                class="arrow-big"></a>
-                                        <h4 class="products__item_hover_h4">Fishnet Chair</h4>
-                                        <p class="products__item_hover_p">Seat and back with upholstery made
-                                            of&nbsp;cold cure foam</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="hot">
-                    <div class="container">
-                        <div class="background padding-content slider slider-2">
-                            <div class="hhpb">
-                                <h4 class="main-h4 hot-h4">Hot deal</h4>
-                                <h2 class="main-h2 hot-h2">Fishnet Chair</h2>
-                                <p class="main-p hot-p">Seat and back with upholstery made of&nbsp;cold cure foam.
-                                    Steel frame, available in&nbsp;matt powder-coated black or&nbsp;highly polished
-                                    chrome.</p>
-                                <a class="background button button-order" href="details">Order Us<img src="/static/img/arrow.png"
-                                        alt="arrow" class="arrow"></a>
-                            </div>
-                            <div class="pagination">
-                                <a href="#" class="circle"></a>
-                                <a href="#" class="circle circle_active"></a>
-                                <a href="#" class="circle"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="exclusive">
-                    <div class="container">
-                        <div class="padding-content padding-products-block split">
-                            <section class="background split-2__all hhpb split-2__1 ">
-                                <h4 class="exclusive-h4">exclusive</h4>
-                                <h2 class="exclusive-h2">Fishnet Chair</h2>
-                                <p class="exclusive-p">Seat and back with upholstery made of&nbsp;cold cure foam. Steel
-                                    frame, available in&nbsp;matt powder-coated black or&nbsp;highly polished chrome.</p>
-                                <a class="background button button-order" href="details">Order Us<img src="/static/img/arrow.png"
-                                        alt="arrow" class="arrow"></a>
-                            </section>
-                            <section class="split-2__all exclusive-products split-2__2">
-                                <div class="background products__item" style="background-image: url(/static/img/product-2-sm.jpg)">
-                                    <div class="hhpb products__item products__item_hover">
-                                        <a href="details" class="background button button-arrow"><img src="/static/img/arrow.png"
-                                                alt="arrow" class="arrow-big"></a>
-                                        <h4 class="products__item_hover_h4">Fishnet Chair</h4>
-                                        <p class="products__item_hover_p">Seat and back with upholstery made
-                                            of&nbsp;cold cure foam</p>
-                                    </div>
-                                </div>
-                                <div class="background products__item" style="background-image: url(/static/img/product-3-sm.jpg)">
-                                    <div class="hhpb products__item products__item_hover">
-                                        <a href="details" class="background button button-arrow"><img src="/static/img/arrow.png"
-                                                alt="arrow" class="arrow-big"></a>
-                                        <h4 class="products__item_hover_h4">Fishnet Chair</h4>
-                                        <p class="products__item_hover_p">Seat and back with upholstery made
-                                            of&nbsp;cold cure foam</p>
-                                    </div>
-                                </div>
-                                <div class="background products__item" style="background-image: url(/static/img/product-4-sm.jpg)">
-                                    <div class="hhpb products__item products__item_hover">
-                                        <a href="details" class="background button button-arrow"><img src="/static/img/arrow.png"
-                                                alt="arrow" class="arrow-big"></a>
-                                        <h4 class="products__item_hover_h4">Fishnet Chair</h4>
-                                        <p class="products__item_hover_p">Seat and back with upholstery made
-                                            of&nbsp;cold cure foam</p>
-                                    </div>
-                                </div>
-                                <div class="background products__item" style="background-image: url(/static/img/product-5-sm.jpg)">
-                                    <div class="hhpb products__item products__item_hover">
-                                        <a href="details" class="background button button-arrow"><img src="/static/img/arrow.png"
-                                                alt="arrow" class="arrow-big"></a>
-                                        <h4 class="products__item_hover_h4">Fishnet Chair</h4>
-                                        <p class="products__item_hover_p">Seat and back with upholstery made
-                                            of&nbsp;cold cure foam</p>
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mobile">
-                    <div class="container">
-                        <div class="background padding-content hhpb mobile-block">
-                            <h4 class="mobile-h4">mobile app</h4>
-                            <h2 class="mobile-h2">Find. Follow. Favorite.</h2>
-                            <p class="mobile-p">Save your favorites and share your style.</p>
-                            <div class="mobile-links">
-                                <a class="background button mobile-links__all" href="#" style="background-image: url(/static/img/app-store.jpg)"></a>
-                                <a class="background button mobile-links__all" href="#" style="background-image: url(/static/img/google-play.jpg)"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </main>
-
+            <div class="pagination">
+                <a href="#" class="circle"></a>
+                <a href="#" class="circle circle_active"></a>
+                <a href="#" class="circle"></a>
+            </div>
         </div>
-
-        <div class="bottom">
-            <div class="container">
-                <div class="background padding-content contacts">
-                    <section class="contacts-middle">
-                        <div class="contact-us">
-                            <h4 class="contacts-h4">Contact Us</h4>
-                            <div class="contact-us-p-box">
-                                <p class="contact-us-p">132A Bridge Road Richmond VIC&nbsp;Australia.</p>
-                                <p class="contact-us-p">Talk to&nbsp;us on&nbsp;1300&nbsp;132 info@interior.com</p>
-                            </div>
-                        </div>
-                        <div class="useful">
-                            <h4 class="contacts-h4">Useful Information</h4>
-                            <div class="useful-a-box">
-                                <div class="useful-link-box">
-                                    <a href="#" class="useful-link">Sales terms</a>
-                                    <a href="#" class="useful-link">Customer care</a>
-                                    <a href="#" class="useful-link">Delivery</a>
-                                </div>
-                                <div class="useful-link-box">
-                                    <a href="#" class="useful-link">Architect accounts</a>
-                                    <a href="#" class="useful-link">Careers</a>
-                                    <a href="#" class="useful-link">Exchanges &amp;&nbsp;returns</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="subscribe">
-                            <h4 class="contacts-h4">Let&rsquo;s Stay in&nbsp;Touch!</h4>
-                            <p class="subscribe-p">Suscribe to&nbsp;know about our latest news, products and special
-                                offers just for suscribers.</p>
-                            <form class="email">
-                                <input type="email" placeholder="your email address" class="input-email">
-                                <button type="submit" class="button-send"></button>
-                            </form>
-                        </div>
-                    </section>
-                    <footer class="footer">
-                        <p class="copyright">&copy;&nbsp;Copyright&nbsp;&mdash; INTERIOR 2016. All Rights Reserved.</p>
-                        <div class="social-links">
-                            <a class="icon-link" href="#">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a class="icon-link" href="#">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a class="icon-link" href="#">
-                                <i class="fab fa-google-plus-g"></i>
-                            </a>
-                            <a class="icon-link" href="#">
-                                <i class="fab fa-pinterest-p"></i>
-                            </a>
-                        </div>
-                        <p class="copyright">Terms &amp;&nbsp;Conditions&nbsp;/ Privacy policy &amp;&nbsp;Cookies</p>
-                    </footer>
+    </div>
+</div>
+<main>
+    <div class="new">
+        <div class="container">
+            <div class="background padding-content padding-products-block products-block">
+                <div class="products-heading">
+                    <ul class="new-menu">
+                        <li class="new-menu__list"><a href="#"
+                                                      class="new-menu__link new-menu__link_active">Featured</a></li>
+                        <li class="new-menu__list"><a href="#" class="new-menu__link">New</a></li>
+                    </ul>
+                    <a class="explore-all" href="{% url 'catalog' %}">explore all <i class="fas fa-angle-right"></i></a>
+                </div>
+                <div class="new-products">
+                    {% for item in new_products %}
+                        {% if forloop.counter <= 6 %}
+                            {% include 'mainapp/include/inc_product_preview.html' %}
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
-
     </div>
 
-</body>
+    <div class="promo">
+        <div class="promo">
+            {% include 'mainapp/include/inc_promo.html' %}
+        </div>
+    </div>
 
-</html>
+    <div class="trending">
+        <div class="container">
+            <div class="background padding-content padding-products-block products-block">
+                <div class="products-heading trendings-heading">
+                    <p class="trendings-title">Trending Products</p>
+                    <a class="explore-all" href="{% url 'catalog' %}">explore all <i class="fas fa-angle-right"></i></a>
+                </div>
+                <div class="trending-products">
+                    {% with size=370 %}
+                        {% for item in trending_products %}
+                            {% if forloop.counter <= 6 %}
+                                {% include 'mainapp/include/inc_product_preview.html' %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endwith %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hot">
+        <div class="container">
+            <div class="background padding-content slider slider-2">
+                <div class="hhpb">
+                    <h4 class="main-h4 hot-h4">Hot deal</h4>
+                    <h2 class="main-h2 hot-h2">Fishnet Chair</h2>
+                    <p class="main-p hot-p">Seat and back with upholstery made of&nbsp;cold cure foam.
+                        Steel frame, available in&nbsp;matt powder-coated black or&nbsp;highly polished
+                        chrome.</p>
+                    <a class="background button button-order" href="{% url 'product' %}">Order Us<img
+                            src="{% static 'img/arrow.png' %}"
+                            alt="arrow" class="arrow"></a>
+                </div>
+                <div class="pagination">
+                    <a href="#" class="circle"></a>
+                    <a href="#" class="circle circle_active"></a>
+                    <a href="#" class="circle"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="exclusive">
+        <div class="container">
+            <div class="padding-content padding-products-block split">
+                <section class="background split-2__all hhpb split-2__1 ">
+                    <h4 class="exclusive-h4">exclusive</h4>
+                    <h2 class="exclusive-h2">Fishnet Chair</h2>
+                    <p class="exclusive-p">Seat and back with upholstery made of&nbsp;cold cure foam. Steel
+                        frame, available in&nbsp;matt powder-coated black or&nbsp;highly polished chrome.</p>
+                    <a class="background button button-order" href="{% url 'product' %}">Order Us<img
+                            src="{% static 'img/arrow.png' %}"
+                            alt="arrow" class="arrow"></a>
+                </section>
+                <section class="split-2__all exclusive-products split-2__2">
+                    {% for item in exclusive_products %}
+                        {% if forloop.counter <= 6 %}
+                            {% include 'mainapp/include/inc_product_preview.html' %}
+                        {% endif %}
+                    {% endfor %}
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <div class="mobile">
+        <div class="container">
+            <div class="background padding-content hhpb mobile-block">
+                <h4 class="mobile-h4">mobile app</h4>
+                <h2 class="mobile-h2">Find. Follow. Favorite.</h2>
+                <p class="mobile-p">Save your favorites and share your style.</p>
+                <div class="mobile-links">
+                    <a class="background button mobile-links__all" href="#"
+                       style="background-image: url({% static 'img/app-store.jpg' %})"></a>
+                    <a class="background button mobile-links__all" href="#"
+                       style="background-image: url({% static 'img/google-play.jpg' %})"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

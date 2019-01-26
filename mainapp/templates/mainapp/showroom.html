@@ -1,0 +1,19 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="products-head">
+        <div class="container">
+            <div class="background padding-content products-header">
+                <header class="header">
+                    <a class="logo" href="{% url 'home' %}"><img src="{% static 'img/logo.svg' %}" alt="logo"></a>
+                    <nav>
+                        {% include 'mainapp/widgets/main_menu.html' %}
+                    </nav>
+                </header>
+                <div class="hhpb products-header-content">
+                    <h2 class="products-header-h2">Temp page</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
