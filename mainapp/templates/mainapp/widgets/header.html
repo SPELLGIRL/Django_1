@@ -1,0 +1,20 @@
+{% load static %}
+
+
+<header class="header">
+    <a class="logo" href="{% url 'home' %}"><img
+            src="{% static 'img/logo.svg' %}" alt="logo"></a>
+    <nav>
+        <ul class="menu">
+            {% for link in main_menu_links %}
+                <li class="menu__list"><a
+                        href="{% url link.href %}{{ link.category }}"
+                        class="menu__link {% if request.resolver_match.url_name == link.href %} menu__link_active {% endif %}">{{ link.name }}
+                </a>
+                </li>
+            {% endfor %}
+            <li class="menu__list search"><img
+                    src="{% static 'img/search.svg' %}" alt="search"></li>
+        </ul>
+    </nav>
+</header>
