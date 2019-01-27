@@ -1,0 +1,28 @@
+[
+  {
+    "model": "mainapp.product",
+    "pk": 9,
+    "fields": {
+      "title": "fishnet chair",
+      "description": "Seat and back with upholstery made of cold cure foam. Steel frame, available in matt powder-coated black or highly polished chrome.",
+      "small_img_path": "",
+      "big_img_path": "product_big_img/promo-img1.jpg",
+      "category": [
+        6
+      ]
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 10,
+    "fields": {
+      "title": "fishnet chair",
+      "description": "Seat and back with upholstery made of cold cure foam. Steel frame, available in matt powder-coated black or highly polished chrome.",
+      "small_img_path": "",
+      "big_img_path": "product_big_img/promo-img.jpg",
+      "category": [
+        6
+      ]
+    }
+  }
+]

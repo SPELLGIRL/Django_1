@@ -4,10 +4,57 @@ from django.db import models
 # Create your models here.
 
 class Category(models.Model):
-    name = models.CharField(max_length=20, verbose_name='Категория')
+    name = models.CharField(max_length=30, verbose_name='Категория')
 
     def __str__(self):
-        return self.name
+        return f'{self.id} {self.name}'
+
+
+class MainMenu(models.Model):
+    title = models.CharField(max_length=20, verbose_name='Заголовок')
+    link = models.CharField(max_length=200, verbose_name='Ссылка')
+
+    def __str__(self):
+        return f'{self.id} {self.title}'
+
+
+class CatalogMenu(models.Model):
+    title = models.CharField(max_length=20, verbose_name='Заголовок')
+    link = models.CharField(max_length=200, verbose_name='Ссылка')
+    category = models.OneToOneField(
+        Category,
+        on_delete=models.PROTECT,
+        verbose_name='Категория'
+    )
+
+    def __str__(self):
+        return f'{self.id} {self.title}'
+
+
+class NewMenu(models.Model):
+    title = models.CharField(max_length=20, verbose_name='Заголовок')
+    link = models.CharField(max_length=200, verbose_name='Ссылка')
+    category = models.OneToOneField(
+        Category,
+        on_delete=models.PROTECT,
+        verbose_name='Категория'
+    )
+
+    def __str__(self):
+        return f'{self.id} {self.title}'
+
+
+class Address(models.Model):
+    city = models.CharField(max_length=50, verbose_name='Город')
+    phone = models.CharField(
+        max_length=50,
+        blank=True,
+        verbose_name='Телефон')
+    email = models.EmailField(blank=True, verbose_name='E-Mail')
+    address = models.CharField(max_length=150, verbose_name='Адрес')
+
+    def __str__(self):
+        return f'{self.id} {self.city} {self.address}'
 
 
 class Product(models.Model):
@@ -31,4 +78,4 @@ class Product(models.Model):
     )
 
     def __str__(self):
-        return self.title
+        return f'{self.id} {self.title}'

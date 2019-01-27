@@ -1,0 +1,47 @@
+[
+  {
+    "model": "mainapp.catalogmenu",
+    "pk": 1,
+    "fields": {
+      "title": "home",
+      "link": "home",
+      "category": 7
+    }
+  },
+  {
+    "model": "mainapp.catalogmenu",
+    "pk": 2,
+    "fields": {
+      "title": "office",
+      "link": "office",
+      "category": 8
+    }
+  },
+  {
+    "model": "mainapp.catalogmenu",
+    "pk": 3,
+    "fields": {
+      "title": "furniture",
+      "link": "furniture",
+      "category": 9
+    }
+  },
+  {
+    "model": "mainapp.catalogmenu",
+    "pk": 4,
+    "fields": {
+      "title": "modern",
+      "link": "modern",
+      "category": 10
+    }
+  },
+  {
+    "model": "mainapp.catalogmenu",
+    "pk": 5,
+    "fields": {
+      "title": "classic",
+      "link": "classic",
+      "category": 11
+    }
+  }
+]
