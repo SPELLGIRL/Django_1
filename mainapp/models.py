@@ -7,7 +7,7 @@ class Category(models.Model):
     name = models.CharField(max_length=30, verbose_name='Категория')
 
     def __str__(self):
-        return f'{self.id} {self.name}'
+        return self.name
 
 
 class MainMenu(models.Model):
@@ -15,7 +15,7 @@ class MainMenu(models.Model):
     link = models.CharField(max_length=200, verbose_name='Ссылка')
 
     def __str__(self):
-        return f'{self.id} {self.title}'
+        return self.title
 
 
 class CatalogMenu(models.Model):
@@ -28,7 +28,7 @@ class CatalogMenu(models.Model):
     )
 
     def __str__(self):
-        return f'{self.id} {self.title}'
+        return self.title
 
 
 class NewMenu(models.Model):
@@ -41,7 +41,7 @@ class NewMenu(models.Model):
     )
 
     def __str__(self):
-        return f'{self.id} {self.title}'
+        return self.title
 
 
 class Address(models.Model):
@@ -78,4 +78,4 @@ class Product(models.Model):
     )
 
     def __str__(self):
-        return f'{self.id} {self.title}'
+        return self.title

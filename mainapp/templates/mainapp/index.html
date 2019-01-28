@@ -35,17 +35,7 @@
             <div class="container">
                 <div class="background padding-content padding-products-block products-block">
                     <div class="products-heading">
-                        <ul class="new-menu">
-                            <li class="new-menu__list">
-                                <a href="#"
-                                   class="new-menu__link new-menu__link_active">
-                                    Featured
-                                </a>
-                            </li>
-                            <li class="new-menu__list">
-                                <a href="#" class="new-menu__link">New</a>
-                            </li>
-                        </ul>
+                        {% include 'mainapp/widgets/new_menu.html' %}
                         <a class="explore-all" href="{% url 'catalog' %}">
                             explore all <i class="fas fa-angle-right"></i></a>
                     </div>

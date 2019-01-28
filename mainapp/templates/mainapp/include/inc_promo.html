@@ -5,10 +5,16 @@
             {% if forloop.counter <= 2 %}
                 <div class="background split-1__all hhpb"
                      style="background-image:
-                             url({% static 'img/' %}{{ item.path }})">
+                             url(
+                             {% if item.big_img_path %}
+                                 {{ item.big_img_path.url }}
+                             {% else %}
+                                 {{ item.small_img_path.url }}
+                             {% endif %}
+                             )">
                     <h4 class="exclusive-h4">exclusive</h4>
-                    <h2 class="exclusive-h2">{{ item.name|title }}</h2>
-                    <p class="exclusive-p">{{ item.discription|capfirst|safe }}</p>
+                    <h2 class="exclusive-h2">{{ item.title|title }}</h2>
+                    <p class="exclusive-p">{{ item.description|capfirst|safe }}</p>
                     <a class="button button-order" href="{% url 'product' %}">Order
                         Us<img
                                 src="{% static 'img/arrow.png' %}" alt="arrow"
