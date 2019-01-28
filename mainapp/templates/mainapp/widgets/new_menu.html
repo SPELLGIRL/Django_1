@@ -1,10 +1,8 @@
 {% load static %}
-
-
 <ul class="new-menu">
     {% for link in new_menu_links %}
         <li class="new-menu__list">
-            <a href="{% url 'home' %}"
+            <a href="{% url 'home' %}{{ link.category|lower }}"
                class="new-menu__link {% if current_product_category == link.category|lower %} new-menu__link_active {% endif %}"
             >{{ link.title }}
             </a>

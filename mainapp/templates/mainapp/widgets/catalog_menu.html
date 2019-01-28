@@ -1,14 +1,9 @@
 {% load static %}
 <ul class="menu {% if request.resolver_match.url_name == 'product' %} background detail-menu {% endif %}">
-    <li class="menu__list">
-        <a href="{% url 'catalog' 'all' %}"
-           class="menu__link products-menu__link {% if request.resolver_match.url_name == 'product' %} detail-menu__link {% endif %} {% if current_product_category == 'all' %} menu__link_active {% endif %}">ALL
-        </a>
-    </li>
     {% for link in products_menu_category %}
         <li class="menu__list">
-            <a href="{% url 'catalog' link.category|lower %}"
-               class="menu__link products-menu__link {% if request.resolver_match.url_name == 'product' %} detail-menu__link {% endif %} {% if current_product_category == link.category|lower %} menu__link_active {% endif %}">{{ link.category }}
+            <a href="{% url 'catalog' %}{{ link.category|lower }}"
+               class="menu__link products-menu__link {% if request.resolver_match.url_name == 'product' %} detail-menu__link {% endif %} {% if current_product_category == link.category|lower %} menu__link_active {% endif %}">{{ link.title }}
             </a>
         </li>
     {% endfor %}

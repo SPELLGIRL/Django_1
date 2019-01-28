@@ -20,7 +20,6 @@ class MainMenu(models.Model):
 
 class CatalogMenu(models.Model):
     title = models.CharField(max_length=20, verbose_name='Заголовок')
-    link = models.CharField(max_length=200, verbose_name='Ссылка')
     category = models.OneToOneField(
         Category,
         on_delete=models.PROTECT,

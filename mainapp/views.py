@@ -33,13 +33,15 @@ def index(request: HttpRequest, current_product_category='new'):
     return render(request, 'mainapp/index.html', inner_content)
 
 
-def products(request: HttpRequest, current_product_category='all'):
+def products(request: HttpRequest, current_product_category=''):
     trending_products = list(Product.objects.filter(category__id=4))
     catalog_menu_links = list(CatalogMenu.objects.all())
     promo_products = list(Product.objects.filter(category__id=6))
     inner_content = {
         'title': 'каталог товаров',
-        'products_menu_category': catalog_menu_links,
+        'products_menu_category':
+            [{'title': 'all', 'category': ''}]
+            + catalog_menu_links,
         'trending_products': sample(trending_products, len(trending_products)),
         'promo_products': sample(promo_products, len(promo_products)),
         'current_product_category': current_product_category
@@ -52,9 +54,10 @@ def details(request: HttpRequest, color='red'):
     trending_products = list(Product.objects.filter(category__id=4))
     catalog_menu_links = list(CatalogMenu.objects.all())
     inner_content = {
-        'current_product_category': '',
         'title': 'товар',
-        'products_menu_category': catalog_menu_links,
+        'products_menu_category':
+            [{'title': 'all', 'category': ''}]
+            + catalog_menu_links,
         'trending_products': sample(trending_products, len(trending_products)),
         'color': color
     }
