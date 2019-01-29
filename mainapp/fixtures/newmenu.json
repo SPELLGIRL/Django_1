@@ -1,0 +1,20 @@
+[
+  {
+    "model": "mainapp.newmenu",
+    "pk": 1,
+    "fields": {
+      "title": "new",
+      "link": "new",
+      "category": 1
+    }
+  },
+  {
+    "model": "mainapp.newmenu",
+    "pk": 2,
+    "fields": {
+      "title": "featured",
+      "link": "featured",
+      "category": 2
+    }
+  }
+]

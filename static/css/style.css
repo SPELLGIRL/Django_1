@@ -438,6 +438,7 @@ p {
     padding-right: 20px;
     padding-left: 9px;
 
+    text-transform: capitalize;
     color: #6c6c6c;
     border-bottom: 1px solid #6c6c6c;
 }
@@ -547,14 +548,6 @@ p {
     max-width: 683px;
     min-height: 683px;
     padding-left: 50px;
-}
-
-.split-1__1 {
-    background-image: url(/static/img/promo-img1.jpg);
-}
-
-.split-1__2 {
-    background-image: url(/static/img/promo-img.jpg);
 }
 
 .trendings__item {

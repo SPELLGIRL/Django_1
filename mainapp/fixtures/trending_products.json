@@ -1,0 +1,158 @@
+[
+  {
+    "model": "mainapp.product",
+    "pk": 11,
+    "fields": {
+      "title": "fishnet chair",
+      "description": "Seat and back with upholstery made of cold cure foam",
+      "small_img_path": "product_small_img/product-11.jpg",
+      "big_img_path": "",
+      "category": [
+        4
+      ]
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 12,
+    "fields": {
+      "title": "fishnet chair",
+      "description": "Seat and back with upholstery made of cold cure foam",
+      "small_img_path": "product_small_img/product-21.jpg",
+      "big_img_path": "",
+      "category": [
+        4
+      ]
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 13,
+    "fields": {
+      "title": "fishnet chair",
+      "description": "Seat and back with upholstery made of cold cure foam",
+      "small_img_path": "product_small_img/product-31.jpg",
+      "big_img_path": "",
+      "category": [
+        4
+      ]
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 14,
+    "fields": {
+      "title": "fishnet chair",
+      "description": "Seat and back with upholstery made of cold cure foam",
+      "small_img_path": "product_small_img/product-41.jpg",
+      "big_img_path": "",
+      "category": [
+        4
+      ]
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 15,
+    "fields": {
+      "title": "fishnet chair",
+      "description": "Seat and back with upholstery made of cold cure foam",
+      "small_img_path": "product_small_img/product-5.jpg",
+      "big_img_path": "",
+      "category": [
+        4
+      ]
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 16,
+    "fields": {
+      "title": "fishnet chair",
+      "description": "Seat and back with upholstery made of cold cure foam",
+      "small_img_path": "product_small_img/product-6.jpg",
+      "big_img_path": "",
+      "category": [
+        4
+      ]
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 17,
+    "fields": {
+      "title": "fishnet chair",
+      "description": "Seat and back with upholstery made of cold cure foam",
+      "small_img_path": "product_small_img/product-11.jpg",
+      "big_img_path": "",
+      "category": [
+        4
+      ]
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 18,
+    "fields": {
+      "title": "fishnet chair",
+      "description": "Seat and back with upholstery made of cold cure foam",
+      "small_img_path": "product_small_img/product-21.jpg",
+      "big_img_path": "",
+      "category": [
+        4
+      ]
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 19,
+    "fields": {
+      "title": "fishnet chair",
+      "description": "Seat and back with upholstery made of cold cure foam",
+      "small_img_path": "product_small_img/product-31.jpg",
+      "big_img_path": "",
+      "category": [
+        4
+      ]
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 20,
+    "fields": {
+      "title": "fishnet chair",
+      "description": "Seat and back with upholstery made of cold cure foam",
+      "small_img_path": "product_small_img/product-41.jpg",
+      "big_img_path": "",
+      "category": [
+        4
+      ]
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 21,
+    "fields": {
+      "title": "fishnet chair",
+      "description": "Seat and back with upholstery made of cold cure foam",
+      "small_img_path": "product_small_img/product-5.jpg",
+      "big_img_path": "",
+      "category": [
+        4
+      ]
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk": 22,
+    "fields": {
+      "title": "fishnet chair",
+      "description": "Seat and back with upholstery made of cold cure foam",
+      "small_img_path": "product_small_img/product-6.jpg",
+      "big_img_path": "",
+      "category": [
+        4
+      ]
+    }
+  }
+]

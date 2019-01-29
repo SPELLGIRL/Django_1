@@ -1,95 +1,26 @@
 {% extends 'mainapp/base.html' %}
 {% load static %}
+
 {% block content %}
 
-<div class="first">
-    <div class="container">
-        <div class="background header-block padding-content slider slider-1">
-            <header class="header">
-                <a class="logo" href="{% url 'home' %}"><img src="{% static 'img/logo.svg' %}"
-                                                             alt="logo"></a>
-                <nav>
-                    {% include 'mainapp/widgets/main_menu.html' %}
-                </nav>
-            </header>
-            <div class="hhpb">
-                <h4 class="main-h4">TRENDING</h4>
-                <h2 class="main-h2">Fishnet Chair</h2>
-                <p class="main-p">Seat and back with upholstery made of&nbsp;cold cure foam. Steel frame,
-                    available in&nbsp;matt powder-coated black or&nbsp;highly polished chrome.</p>
-                <a class="background button button-order" href="{% url 'product' %}">Order Us<img
-                        src="{% static 'img/arrow.png' %}"
-                        alt="arrow" class="arrow"></a>
-            </div>
-            <div class="pagination">
-                <a href="#" class="circle"></a>
-                <a href="#" class="circle circle_active"></a>
-                <a href="#" class="circle"></a>
-            </div>
-        </div>
-    </div>
-</div>
-<main>
-    <div class="new">
+    <div class="first">
         <div class="container">
-            <div class="background padding-content padding-products-block products-block">
-                <div class="products-heading">
-                    <ul class="new-menu">
-                        <li class="new-menu__list"><a href="#"
-                                                      class="new-menu__link new-menu__link_active">Featured</a></li>
-                        <li class="new-menu__list"><a href="#" class="new-menu__link">New</a></li>
-                    </ul>
-                    <a class="explore-all" href="{% url 'catalog' %}">explore all <i class="fas fa-angle-right"></i></a>
-                </div>
-                <div class="new-products">
-                    {% for item in new_products %}
-                        {% if forloop.counter <= 6 %}
-                            {% include 'mainapp/include/inc_product_preview.html' %}
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="promo">
-        <div class="promo">
-            {% include 'mainapp/include/inc_promo.html' %}
-        </div>
-    </div>
-
-    <div class="trending">
-        <div class="container">
-            <div class="background padding-content padding-products-block products-block">
-                <div class="products-heading trendings-heading">
-                    <p class="trendings-title">Trending Products</p>
-                    <a class="explore-all" href="{% url 'catalog' %}">explore all <i class="fas fa-angle-right"></i></a>
-                </div>
-                <div class="trending-products">
-                    {% with size=370 %}
-                        {% for item in trending_products %}
-                            {% if forloop.counter <= 6 %}
-                                {% include 'mainapp/include/inc_product_preview.html' %}
-                            {% endif %}
-                        {% endfor %}
-                    {% endwith %}
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="hot">
-        <div class="container">
-            <div class="background padding-content slider slider-2">
+            <div class="background header-block padding-content slider slider-1">
+                {% include 'mainapp/widgets/header.html' %}
                 <div class="hhpb">
-                    <h4 class="main-h4 hot-h4">Hot deal</h4>
-                    <h2 class="main-h2 hot-h2">Fishnet Chair</h2>
-                    <p class="main-p hot-p">Seat and back with upholstery made of&nbsp;cold cure foam.
-                        Steel frame, available in&nbsp;matt powder-coated black or&nbsp;highly polished
-                        chrome.</p>
-                    <a class="background button button-order" href="{% url 'product' %}">Order Us<img
+                    <h4 class="main-h4">TRENDING</h4>
+                    <h2 class="main-h2">Fishnet Chair</h2>
+                    <p class="main-p">Seat and back with upholstery made of&nbsp;cold
+                        cure foam. Steel frame, available in&nbsp;matt
+                        powder-coated
+                        black or&nbsp;highly polished chrome.
+                    </p>
+                    <a class="background button button-order"
+                       href="{% url 'product' %}">Order Us<img
                             src="{% static 'img/arrow.png' %}"
-                            alt="arrow" class="arrow"></a>
+                            alt="arrow"
+                            class="arrow">
+                    </a>
                 </div>
                 <div class="pagination">
                     <a href="#" class="circle"></a>
@@ -99,44 +30,124 @@
             </div>
         </div>
     </div>
-
-    <div class="exclusive">
-        <div class="container">
-            <div class="padding-content padding-products-block split">
-                <section class="background split-2__all hhpb split-2__1 ">
-                    <h4 class="exclusive-h4">exclusive</h4>
-                    <h2 class="exclusive-h2">Fishnet Chair</h2>
-                    <p class="exclusive-p">Seat and back with upholstery made of&nbsp;cold cure foam. Steel
-                        frame, available in&nbsp;matt powder-coated black or&nbsp;highly polished chrome.</p>
-                    <a class="background button button-order" href="{% url 'product' %}">Order Us<img
-                            src="{% static 'img/arrow.png' %}"
-                            alt="arrow" class="arrow"></a>
-                </section>
-                <section class="split-2__all exclusive-products split-2__2">
-                    {% for item in exclusive_products %}
-                        {% if forloop.counter <= 6 %}
-                            {% include 'mainapp/include/inc_product_preview.html' %}
-                        {% endif %}
-                    {% endfor %}
-                </section>
-            </div>
-        </div>
-    </div>
-
-    <div class="mobile">
-        <div class="container">
-            <div class="background padding-content hhpb mobile-block">
-                <h4 class="mobile-h4">mobile app</h4>
-                <h2 class="mobile-h2">Find. Follow. Favorite.</h2>
-                <p class="mobile-p">Save your favorites and share your style.</p>
-                <div class="mobile-links">
-                    <a class="background button mobile-links__all" href="#"
-                       style="background-image: url({% static 'img/app-store.jpg' %})"></a>
-                    <a class="background button mobile-links__all" href="#"
-                       style="background-image: url({% static 'img/google-play.jpg' %})"></a>
+    <main>
+        <div class="new">
+            <div class="container">
+                <div class="background padding-content padding-products-block products-block">
+                    <div class="products-heading">
+                        {% include 'mainapp/widgets/new_menu.html' %}
+                        <a class="explore-all" href="{% url 'catalog' %}">
+                            explore all <i class="fas fa-angle-right"></i></a>
+                    </div>
+                    <div class="new-products">
+                        {% for item in new_products %}
+                            {% if forloop.counter <= 6 %}
+                                {% include 'mainapp/include/inc_product_preview.html' %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</main>
+
+        <div class="promo">
+            {% include 'mainapp/include/inc_promo.html' %}
+        </div>
+
+        <div class="trending">
+            <div class="container">
+                <div class="background padding-content padding-products-block products-block">
+                    <div class="products-heading trendings-heading">
+                        <p class="trendings-title">Trending Products</p>
+                        <a class="explore-all" href="{% url 'catalog' %}">
+                            explore all <i class="fas fa-angle-right"></i></a>
+                    </div>
+                    <div class="trending-products">
+                        {% with size=370 %}
+                            {% for item in trending_products %}
+                                {% if forloop.counter <= 6 %}
+                                    {% include 'mainapp/include/inc_product_preview.html' %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endwith %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hot">
+            <div class="container">
+                <div class="background padding-content slider slider-2">
+                    <div class="hhpb">
+                        <h4 class="main-h4 hot-h4">Hot deal</h4>
+                        <h2 class="main-h2 hot-h2">Fishnet Chair</h2>
+                        <p class="main-p hot-p">
+                            Seat and back with upholstery made of&nbsp;cold
+                            cure foam. Steel frame, available in&nbsp;matt
+                            powder-coated black or&nbsp;highly polished chrome.
+                        </p>
+                        <a class="background button button-order"
+                           href="{% url 'product' %}">Order Us<img
+                                src="{% static 'img/arrow.png' %}"
+                                alt="arrow"
+                                class="arrow">
+                        </a>
+                    </div>
+                    <div class="pagination">
+                        <a href="#" class="circle"></a>
+                        <a href="#" class="circle circle_active"></a>
+                        <a href="#" class="circle"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="exclusive">
+            <div class="container">
+                <div class="padding-content padding-products-block split">
+                    <section class="background split-2__all hhpb split-2__1">
+                        <h4 class="exclusive-h4">exclusive</h4>
+                        <h2 class="exclusive-h2">Fishnet Chair</h2>
+                        <p class="exclusive-p">
+                            Seat and back with upholstery made
+                            of&nbsp;cold cure foam. Steel frame, available in&nbsp;matt
+                            powder-coated black or&nbsp;highly polished chrome.
+                        </p>
+                        <a class="background button button-order"
+                           href="{% url 'product' %}">Order Us<img
+                                src="{% static 'img/arrow.png' %}" alt="arrow"
+                                class="arrow">
+                        </a>
+                    </section>
+                    <section
+                            class="split-2__all exclusive-products split-2__2">
+                        {% for item in exclusive_products %}
+                            {% if forloop.counter <= 6 %}
+                                {% include 'mainapp/include/inc_product_preview.html' %}
+                            {% endif %}
+                        {% endfor %}
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <div class="mobile">
+            <div class="container">
+                <div class="background padding-content hhpb mobile-block">
+                    <h4 class="mobile-h4">mobile app</h4>
+                    <h2 class="mobile-h2">Find. Follow. Favorite.</h2>
+                    <p class="mobile-p">
+                        Save your favorites and share your style.
+                    </p>
+                    <div class="mobile-links">
+                        <a class="background button mobile-links__all" href="#"
+                           style="background-image: url({% static 'img/app-store.jpg' %})"></a>
+                        <a class="background button mobile-links__all" href="#"
+                           style="background-image: url({% static 'img/google-play.jpg' %})"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
 {% endblock %}

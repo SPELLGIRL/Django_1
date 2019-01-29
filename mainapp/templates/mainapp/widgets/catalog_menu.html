@@ -1,9 +1,10 @@
 {% load static %}
 <ul class="menu {% if request.resolver_match.url_name == 'product' %} background detail-menu {% endif %}">
     {% for link in products_menu_category %}
-        <li class="menu__list"><a href="{% url 'catalog' link.product_category %}"
-        class="menu__link products-menu__link {% if request.resolver_match.url_name == 'product' %} detail-menu__link {% endif %} {% if current_product_category == link.product_category %} menu__link_active {% endif %}">{{ link.product_category }}
-        </a>
+        <li class="menu__list">
+            <a href="{% url 'catalog' %}{{ link.category|lower }}"
+               class="menu__link products-menu__link {% if request.resolver_match.url_name == 'product' %} detail-menu__link {% endif %} {% if current_product_category == link.category|lower %} menu__link_active {% endif %}">{{ link.title }}
+            </a>
         </li>
     {% endfor %}
 </ul>
