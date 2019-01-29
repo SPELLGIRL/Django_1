@@ -21,7 +21,7 @@
   },
   {
     "model": "mainapp.address",
-    "pk": 2,
+    "pk": 3,
     "fields": {
       "city": "california",
       "phone": "1900 — 1234 — 5678",
