@@ -1,8 +1,9 @@
-from django.core.management import call_command
 from django.core.management.base import BaseCommand
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from authapp.models import CustomUser
 
-import json, os
+import json
+import os
 
 from django.db import connection
 
@@ -41,10 +42,11 @@ class Command(BaseCommand):
 
         su = input('Create superuser (y/n)? ').lower()
         if su == 'y':
-            super_user = User.objects.create_superuser(
-                'admin',
+            CustomUser.objects.create_superuser(
+                input('Введите имя суперпользователя: '),
                 'django@geekmarket.local',
-                input('Введите пароль суперпользователя(admin): ')
+                input('Введите пароль суперпользователя: '),
+                age=18
             )
 
         categories = load_from_json('all_categories')
