@@ -17,22 +17,6 @@
   },
   {
     "model": "mainapp.mainmenu",
-    "pk": 3,
-    "fields": {
-      "title": "history",
-      "link": "history"
-    }
-  },
-  {
-    "model": "mainapp.mainmenu",
-    "pk": 4,
-    "fields": {
-      "title": "showroom",
-      "link": "showroom"
-    }
-  },
-  {
-    "model": "mainapp.mainmenu",
     "pk": 5,
     "fields": {
       "title": "contact",

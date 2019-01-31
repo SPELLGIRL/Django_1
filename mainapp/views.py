@@ -3,8 +3,6 @@ from django.http import HttpRequest
 from .models import Product, CatalogMenu, MainMenu, NewMenu, Address
 from random import sample
 
-# Create your views here.
-
 main_menu_links = MainMenu.objects.all()
 
 content = {
@@ -63,18 +61,6 @@ def details(request: HttpRequest, color='red'):
     }
     inner_content = {**content, **inner_content}
     return render(request, 'mainapp/details.html', inner_content)
-
-
-def history(request: HttpRequest):
-    inner_content = {'title': 'временная страница'}
-    inner_content = {**content, **inner_content}
-    return render(request, 'mainapp/history.html', inner_content)
-
-
-def showroom(request: HttpRequest):
-    inner_content = {'title': 'временная страница'}
-    inner_content = {**content, **inner_content}
-    return render(request, 'mainapp/showroom.html', inner_content)
 
 
 def contacts(request: HttpRequest):
