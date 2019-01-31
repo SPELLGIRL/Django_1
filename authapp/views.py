@@ -2,11 +2,13 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.http import HttpRequest
 from django.contrib import auth
 
-from .forms import LoginForm
+from django.urls import reverse
+
+from .forms import LoginForm, RegisterForm, UpdateForm
 
 
 def login(request: HttpRequest):
-    title = 'Вход на сайт'
+    title = 'Sign In'
 
     login_form = LoginForm(data=request.POST)
     if request.method == 'POST' and login_form.is_valid():
@@ -35,8 +37,43 @@ def redirect_to_login(request: HttpRequest):
 
 
 def register(request: HttpRequest):
-    return HttpResponseRedirect('/')
+    title = 'Registration'
+
+    if request.method == 'POST':
+        register_form = RegisterForm(request.POST, request.FILES)
+
+        if register_form.is_valid():
+            register_form.save()
+            return HttpResponseRedirect(reverse('auth:login'))
+
+    else:
+        register_form = RegisterForm()
+
+    content = {
+        'title': title,
+        'registration_form': register_form
+    }
+
+    return render(request, 'authapp/register.html', content)
 
 
 def edit(request: HttpRequest):
-    return HttpResponseRedirect('/')
+    title = 'Profile'
+
+    if request.method == 'POST':
+        update_form = UpdateForm(request.POST, request.FILES,
+                                 instance=request.user)
+
+        if update_form.is_valid():
+            update_form.save()
+            return HttpResponseRedirect(reverse('auth:edit'))
+
+    else:
+        update_form = UpdateForm(instance=request.user)
+
+    content = {
+        'title': title,
+        'update_form': update_form
+    }
+
+    return render(request, 'authapp/edit.html', content)

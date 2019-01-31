@@ -16,7 +16,7 @@
             {% if user.is_authenticated %}
                 <li class="menu__list">
                     <a href="{% url 'auth:edit' %}" class="menu__link">
-                        {{ user.first_name|default:'user' }}
+                        My Profile ({{ user.first_name|default:'user' }})
                     </a>
                 </li>
                 <li class="menu__list"><a href="{% url 'auth:logout' %}"
@@ -24,11 +24,11 @@
             {% else %}
                 <li class="menu__list">
                     <a href="{% url 'auth:register' %}"
-                       class="menu__link">register
+                       class="menu__link">sign up
                     </a>
                 </li>
                 <li class="menu__list"><a href="{% url 'auth:login' %}"
-                                          class="menu__link">login</a></li>
+                                          class="menu__link">sign in</a></li>
             {% endif %}
 
 

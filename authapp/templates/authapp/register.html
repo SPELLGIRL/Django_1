@@ -1,0 +1,25 @@
+{% extends 'authapp/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <div class="profile">
+            <form class="profile-form" action="{% url 'auth:register' %}"
+                  method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ registration_form.as_p }}
+                <div class="input-form__submit-buttons">
+                    <input class="button input-form__button" type="submit"
+                           value="Register">
+                    <button type="reset" class="button input-form__button">
+                        Clear
+                    </button>
+                    <button class="button input-form__button">
+                        <a href="{% url 'home' %}">
+                            Home
+                        </a>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
