@@ -8,15 +8,12 @@
                 {% csrf_token %}
                 {{ registration_form.as_p }}
                 <div class="input-form__submit-buttons">
-                    <input class="button input-form__button" type="submit"
+                    <input class="background button input-form__button"
+                           type="submit"
                            value="Register">
-                    <button type="reset" class="button input-form__button">
+                    <button type="reset"
+                            class="background button input-form__button">
                         Clear
-                    </button>
-                    <button class="button input-form__button">
-                        <a href="{% url 'home' %}">
-                            Home
-                        </a>
                     </button>
                 </div>
             </form>

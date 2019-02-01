@@ -15,7 +15,7 @@
                     <h4 class="exclusive-h4">exclusive</h4>
                     <h2 class="exclusive-h2">{{ item.title|title }}</h2>
                     <p class="exclusive-p">{{ item.description|capfirst|safe }}</p>
-                    <a class="button button-order" href="{% url 'product' %}">Order
+                    <a class="button button-order" href="{% url 'product:product' %}">Order
                         Us<img
                                 src="{% static 'img/arrow.png' %}" alt="arrow"
                                 class="arrow"></a>

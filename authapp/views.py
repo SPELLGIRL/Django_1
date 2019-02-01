@@ -5,6 +5,13 @@ from django.contrib import auth
 from django.urls import reverse
 
 from .forms import LoginForm, RegisterForm, UpdateForm
+from mainapp.models import MainMenu
+
+main_menu_links = MainMenu.objects.all()
+
+content = {
+    'main_menu_links': main_menu_links
+}
 
 
 def login(request: HttpRequest):
@@ -20,11 +27,12 @@ def login(request: HttpRequest):
             auth.login(request, user)
             return HttpResponseRedirect('/')
 
-    content = {
+    inner_content = {
         'title': title,
         'login_form': login_form
     }
-    return render(request, 'authapp/login.html', content)
+    inner_content = {**content, **inner_content}
+    return render(request, 'authapp/login.html', inner_content)
 
 
 def logout(request: HttpRequest):
@@ -49,12 +57,13 @@ def register(request: HttpRequest):
     else:
         register_form = RegisterForm()
 
-    content = {
+    inner_content = {
         'title': title,
         'registration_form': register_form
     }
+    inner_content = {**content, **inner_content}
 
-    return render(request, 'authapp/register.html', content)
+    return render(request, 'authapp/register.html', inner_content)
 
 
 def edit(request: HttpRequest):
@@ -71,9 +80,10 @@ def edit(request: HttpRequest):
     else:
         update_form = UpdateForm(instance=request.user)
 
-    content = {
+    inner_content = {
         'title': title,
         'update_form': update_form
     }
+    inner_content = {**content, **inner_content}
 
-    return render(request, 'authapp/edit.html', content)
+    return render(request, 'authapp/edit.html', inner_content)

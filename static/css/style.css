@@ -1283,18 +1283,6 @@ p {
     opacity: .5;
 }
 
-.blue-chair {
-    background-image: url(/static/img/blue-chair.jpg);
-}
-
-.purple-chair {
-    background-image: url(/static/img/purple-chair.jpg);
-}
-
-.red-chair {
-    background-image: url(/static/img/red-chair.jpg);
-}
-
 .colors {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1367,12 +1355,13 @@ p {
     padding: 20px 10px 10px;
     margin: 0 auto;
     display: flex;
-    width: 400px;
-    height: 200px;
+    align-items: center;
     justify-content: center;
 }
 
 .profile-form {
+    margin: 10px 20px;
+    height: 200px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
