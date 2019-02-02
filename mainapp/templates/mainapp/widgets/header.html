@@ -13,7 +13,26 @@
                 </a>
                 </li>
             {% endfor %}
-            <li class="menu__list search"><img
+            {% if user.is_authenticated %}
+                <li class="menu__list">
+                    <a href="{% url 'auth:edit' %}" class="menu__link">
+                        My Profile ({{ user.first_name|default:'user' }})
+                    </a>
+                </li>
+                <li class="menu__list"><a href="{% url 'auth:logout' %}"
+                       class="menu__link">logout</a></li>
+            {% else %}
+                <li class="menu__list">
+                    <a href="{% url 'auth:register' %}"
+                       class="menu__link">sign up
+                    </a>
+                </li>
+                <li class="menu__list"><a href="{% url 'auth:login' %}"
+                                          class="menu__link">sign in</a></li>
+            {% endif %}
+
+
+            <li class=" menu__list search"><img
                     src="{% static 'img/search.svg' %}" alt="search"></li>
         </ul>
     </nav>

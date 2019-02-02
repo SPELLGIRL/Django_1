@@ -9,7 +9,6 @@
         {% endblock %}
     </title>
     {% block css %}
-
         <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,700"
               rel="stylesheet">
         <link rel="stylesheet"
@@ -26,8 +25,15 @@
 <div class="wrapper">
     <div class="top">
         <div class="content">
-            {% block content %}
-            {% endblock %}
+            <div class="container">
+                <div class="background padding-content detail-header">
+                    {% include 'mainapp/widgets/header.html' %}
+                </div>
+                <div class="profile">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
         </div>
     </div>
     <div class="bottom">

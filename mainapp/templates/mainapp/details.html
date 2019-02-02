@@ -1,89 +1,98 @@
 {% extends 'mainapp/base.html' %}
 {% load static %}
 {% block content %}
-<div class="detail-head">
-    <div class="container">
-        <div class="background padding-content detail-header">
-            {% include 'mainapp/widgets/header.html' %}
+    <div class="detail-head">
+        <div class="container">
+            <div class="background padding-content detail-header">
+                {% include 'mainapp/widgets/header.html' %}
+            </div>
         </div>
     </div>
-</div>
 
-<div class="detail-menu-block">
-    <div class="container">
-        {% include 'mainapp/widgets/catalog_menu.html' %}
+    <div class="detail-menu-block">
+        <div class="container">
+            {% include 'mainapp/widgets/catalog_menu.html' %}
+        </div>
     </div>
-</div>
 
-<div class="description">
-    <div class="container">
-        <div class="split padding-description">
-            <div class="split-3__all hhpb split-3__1">
+    <div class="description">
+        <div class="container">
+            <div class="split padding-description">
+                <div class="split-3__all hhpb split-3__1">
+                    <img src="
+                        {% if big_base_file %}
+                            {{ big_img_dir }}/{{ color }}/{{ big_img_filename }}
+                        {% else %}
+                            {{ small_img_dir }}/{{ color }}/{{ small_img_filename }}
+                        {% endif %}"
+                         class="big-img" alt="Big image">
+                    <div class="colors">
+                        <a href="{% url 'product:product' %}{{ product_id }}/blue"
+                           class="background small-img"></a>
+                        <a href="{% url 'product:product' %}{{ product_id }}/purple"
+                           class="background small-img"></a>
+                        <a href="{% url 'product:product' %}{{ product_id }}/red"
+                           class="background small-img"></a>
+                    </div>
+                </div>
+                <div class="split-3__all hhpb split-3__2">
+                    <h2 class="detail-h2">Fishnet Chair</h2>
+                    <h4 class="detail-h4">Hot Deal</h4>
 
-                <img src="{% static 'img/' %}{{ color }}-chair.jpg"
-                     class="big-img" alt="Big image">
-                <div class="colors">
-                    <a href="{% url 'product' %}blue"
-                       class="background small-img blue-chair"></a>
-                    <a href="{% url 'product' %}purple"
-                       class="background small-img purple-chair"></a>
-                    <a href="{% url 'product' %}red"
-                       class="background small-img red-chair"></a>
+                    <h1 class="detail-h1">$&nbsp;<span
+                            class="price">36.7</span>/sq
+                    </h1>
+                    <a class="button button-order button-order_detail"
+                       href="{% url 'product:product' %}">Order Us <i
+                            class="fas fa-angle-right"></i>
+                    </a>
+                    <div class="detail-text">
+                        <p class="detail-p">The majesty of&nbsp;Mountains&nbsp;&mdash;
+                            Ugmonk style.
+                        </p>
+                        <p class="detail-p">Lorem ipsum dolor sit amet,
+                            consectetur
+                            adipisicing elit, sed do&nbsp;eiusmod
+                            tempor incididunt ut&nbsp;labore
+                        </p>
+                        <p class="detail-p">et&nbsp;dolore magna aliqua. Ut&nbsp;enim
+                            ad&nbsp;minim veniam, quis nostrud
+                            exercitation ullamco laboris nisi ut&nbsp;aliquip
+                            ex&nbsp;ea&nbsp;commodo
+                            consequat.
+                        </p>
+                        <p class="detail-p">Duis aute irure dolor in&nbsp;reprehenderit
+                            in&nbsp;voluptate velit esse
+                            cillum dolore eu&nbsp;fugiat nulla pariatur.
+                            Excepteur
+                            sint occaecat cupidatat non
+                            proident.
+                        </p>
+                    </div>
                 </div>
             </div>
-            <div class="split-3__all hhpb split-3__2">
-                <h2 class="detail-h2">Fishnet Chair</h2>
-                <h4 class="detail-h4">Hot Deal</h4>
+        </div>
+    </div>
 
-                <h1 class="detail-h1">$&nbsp;<span class="price">36.7</span>/sq
-                </h1>
-                <a class="button button-order button-order_detail"
-                   href="{% url 'product' %}">Order Us <i
-                        class="fas fa-angle-right"></i>
-                </a>
-                <div class="detail-text">
-                    <p class="detail-p">The majesty of&nbsp;Mountains&nbsp;&mdash;
-                        Ugmonk style.
-                    </p>
-                    <p class="detail-p">Lorem ipsum dolor sit amet, consectetur
-                        adipisicing elit, sed do&nbsp;eiusmod
-                        tempor incididunt ut&nbsp;labore
-                    </p>
-                    <p class="detail-p">et&nbsp;dolore magna aliqua. Ut&nbsp;enim
-                        ad&nbsp;minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut&nbsp;aliquip ex&nbsp;ea&nbsp;commodo
-                        consequat.
-                    </p>
-                    <p class="detail-p">Duis aute irure dolor in&nbsp;reprehenderit
-                        in&nbsp;voluptate velit esse
-                        cillum dolore eu&nbsp;fugiat nulla pariatur. Excepteur
-                        sint occaecat cupidatat non
-                        proident.
-                    </p>
+    <div class="trending">
+        <div class="container">
+            <div class="background padding-content padding-products-block products-block">
+                <div class="products-heading trendings-heading">
+                    <p class="trendings-title">Related Products</p>
+                    <a class="explore-all" href="{% url 'catalog' %}">explore
+                        all
+                        <i class="fas fa-angle-right"></i></a>
+                </div>
+                <div class="trending-products">
+                    {% with size=370 %}
+                        {% for item in trending_products %}
+                            {% if forloop.counter <= 3 %}
+                                {% include 'mainapp/include/inc_product_preview.html' %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endwith %}
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-<div class="trending">
-    <div class="container">
-        <div class="background padding-content padding-products-block products-block">
-            <div class="products-heading trendings-heading">
-                <p class="trendings-title">Related Products</p>
-                <a class="explore-all" href="{% url 'catalog' %}">explore all
-                    <i class="fas fa-angle-right"></i></a>
-            </div>
-            <div class="trending-products">
-                {% with size=370 %}
-                {% for item in trending_products %}
-                {% if forloop.counter <= 3 %}
-                {% include 'mainapp/include/inc_product_preview.html' %}
-                {% endif %}
-                {% endfor %}
-                {% endwith %}
-            </div>
-        </div>
-    </div>
-</div>
 {% endblock %}

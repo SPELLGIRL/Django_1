@@ -1,0 +1,84 @@
+[
+  {
+    "model": "mainapp.mainmenu",
+    "pk": 1,
+    "fields": {
+      "title": "home",
+      "link": "home"
+    }
+  },
+  {
+    "model": "mainapp.mainmenu",
+    "pk": 2,
+    "fields": {
+      "title": "products",
+      "link": "catalog"
+    }
+  },
+  {
+    "model": "mainapp.mainmenu",
+    "pk": 5,
+    "fields": {
+      "title": "contact",
+      "link": "contacts"
+    }
+  },
+  {
+    "model": "mainapp.catalogmenu",
+    "pk": 1,
+    "fields": {
+      "title": "home",
+      "category": 7
+    }
+  },
+  {
+    "model": "mainapp.catalogmenu",
+    "pk": 2,
+    "fields": {
+      "title": "office",
+      "category": 8
+    }
+  },
+  {
+    "model": "mainapp.catalogmenu",
+    "pk": 3,
+    "fields": {
+      "title": "furniture",
+      "category": 9
+    }
+  },
+  {
+    "model": "mainapp.catalogmenu",
+    "pk": 4,
+    "fields": {
+      "title": "modern",
+      "category": 10
+    }
+  },
+  {
+    "model": "mainapp.catalogmenu",
+    "pk": 5,
+    "fields": {
+      "title": "classic",
+      "category": 11
+    }
+  },
+  {
+    "model": "mainapp.newmenu",
+    "pk": 1,
+    "fields": {
+      "title": "new",
+      "link": "new",
+      "category": 1
+    }
+  },
+  {
+    "model": "mainapp.newmenu",
+    "pk": 2,
+    "fields": {
+      "title": "featured",
+      "link": "featured",
+      "category": 2
+    }
+  }
+]

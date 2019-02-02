@@ -1,10 +1,12 @@
 from django.db import models
 
 
-# Create your models here.
-
 class Category(models.Model):
-    name = models.CharField(max_length=30, verbose_name='Категория')
+    name = models.CharField(
+        max_length=30,
+        unique=True,
+        verbose_name='Категория'
+    )
 
     def __str__(self):
         return self.name
@@ -12,7 +14,7 @@ class Category(models.Model):
 
 class MainMenu(models.Model):
     title = models.CharField(max_length=20, verbose_name='Заголовок')
-    link = models.CharField(max_length=200, verbose_name='Ссылка')
+    link = models.CharField(max_length=200, unique=True, verbose_name='Ссылка')
 
     def __str__(self):
         return self.title
@@ -23,6 +25,7 @@ class CatalogMenu(models.Model):
     category = models.OneToOneField(
         Category,
         on_delete=models.PROTECT,
+        unique=True,
         verbose_name='Категория'
     )
 
@@ -32,10 +35,10 @@ class CatalogMenu(models.Model):
 
 class NewMenu(models.Model):
     title = models.CharField(max_length=20, verbose_name='Заголовок')
-    link = models.CharField(max_length=200, verbose_name='Ссылка')
     category = models.OneToOneField(
         Category,
         on_delete=models.PROTECT,
+        unique=True,
         verbose_name='Категория'
     )
 
