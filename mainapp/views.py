@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpRequest, HttpResponseRedirect
-from .models import Product, CatalogMenu, MainMenu, NewMenu, Address
+from .models import Product, Category, CatalogMenu, MainMenu, NewMenu, Address
 from random import sample
 import os
 from django.urls import reverse
@@ -12,18 +12,17 @@ content = {
 }
 
 
-def index(request: HttpRequest, current_product_category='new'):
-    new_menu_links = list(NewMenu.objects.all())
-    for all_category in new_menu_links:
-        if all_category.category.name == current_product_category:
-            break
-    else:
-        return HttpResponseRedirect(reverse('home'))
-
-    trending_products = list(Product.objects.filter(category__id=4))
-    new_products = list(Product.objects.filter(category__id=1))
-    exclusive_products = list(Product.objects.filter(category__id=3))
-    promo_products = list(Product.objects.filter(category__id=6))
+def index(request: HttpRequest, current_product_category=''):
+    new_menu_links = [{'title': NewMenu.objects.first().title,
+                       'category': ''}] + list(
+        NewMenu.objects.all()[1:].values('title', 'category'))
+    for i in new_menu_links[1:]:
+        i['category'] = Category.objects.get(pk=i['category']).name
+    trending_products = list(Product.objects.filter(category__name='trending'))
+    new_products = list(Product.objects.filter(category__name='new'))
+    exclusive_products = list(
+        Product.objects.filter(category__name='exclusive'))
+    promo_products = list(Product.objects.filter(category__name='promo'))
 
     inner_content = {
         'title': 'Main',
@@ -62,44 +61,38 @@ def products(request: HttpRequest, current_product_category='all'):
         return HttpResponseRedirect(reverse('catalog'))
 
 
-def details(request: HttpRequest, product_id=None, color=''):
-    if product_id not in Product.objects.values_list('id', flat=True).order_by(
-            'id'):
-        return HttpResponseRedirect(reverse('home'))
-    current_product = Product.objects.get(pk=product_id)
-    if current_product.big_img_path:
-        big_base_file = os.path.split(current_product.big_img_path.url)
-        img_content = {
-            'big_base_file': True,
-            'big_img_path': current_product.big_img_path,
-            'big_img_dir': big_base_file[0],
-            'big_img_filename': big_base_file[1]
-        }
+def details(request: HttpRequest, product_id=None, color=None, size=None):
+    current_product = get_object_or_404(Product, pk=product_id)
+
+    if current_product.big_img_path and size is None:
+        image_link = current_product.big_img_path.url
+        if color:
+            split = os.path.split(current_product.big_img_path.url)
+            image_link = split[0] + str(color) + split[1]
+
     elif current_product.small_img_path:
-        small_base_file = os.path.split(current_product.small_img_path.url)
-        img_content = {
-            'small_base_file': True,
-            'small_img_path': current_product.small_img_path,
-            'small_img_dir': small_base_file[0],
-            'small_img_filename': small_base_file[1]
-        }
+        image_link = current_product.small_img_path.url
     else:
-        img_content = {}
-    trending_products = list(Product.objects.filter(category__name='trending'))
+        image_link = ''
+
     catalog_menu_links = list(CatalogMenu.objects.all())
+    same_products = list(Product.objects.exclude(pk=product_id).filter(
+        category__in=current_product.category.all()))
     inner_content = {
-        'title': 'Product',
+        'title': current_product.title,
         'products_menu_category':
             [{'title': 'all', 'category': ''}]
             + catalog_menu_links,
-        'trending_products': sample(trending_products, len(trending_products)),
         'color': color,
         'product_id': product_id,
+        'img_link': image_link,
+        'same_products': sample(same_products, len(same_products))
         # 'product_desc': current_product.full_description,
         # 'product_price': current_product.price,
         # 'product_category': current_product.mark,
     }
-    inner_content = {**content, **img_content, **inner_content}
+    inner_content = {**content, **inner_content}
+
     return render(request, 'mainapp/details.html', inner_content)
 
 

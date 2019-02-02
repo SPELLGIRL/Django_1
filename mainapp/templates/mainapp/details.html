@@ -19,12 +19,7 @@
         <div class="container">
             <div class="split padding-description">
                 <div class="split-3__all hhpb split-3__1">
-                    <img src="
-                        {% if big_base_file %}
-                            {{ big_img_dir }}/{{ color }}/{{ big_img_filename }}
-                        {% else %}
-                            {{ small_img_dir }}/{{ color }}/{{ small_img_filename }}
-                        {% endif %}"
+                    <img src="{{ img_link }}"
                          class="big-img" alt="Big image">
                     <div class="colors">
                         <a href="{% url 'product:product' %}{{ product_id }}/blue"
@@ -85,7 +80,7 @@
                 </div>
                 <div class="trending-products">
                     {% with size=370 %}
-                        {% for item in trending_products %}
+                        {% for item in same_products %}
                             {% if forloop.counter <= 3 %}
                                 {% include 'mainapp/include/inc_product_preview.html' %}
                             {% endif %}
