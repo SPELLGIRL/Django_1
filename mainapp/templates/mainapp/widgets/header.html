@@ -1,6 +1,5 @@
 {% load static %}
 
-
 <header class="header">
     <a class="logo" href="{% url 'home' %}"><img
             src="{% static 'img/logo.svg' %}" alt="logo"></a>
@@ -9,26 +8,29 @@
             {% for item in main_menu_links %}
                 <li class="menu__list"><a
                         href="{% url item.link %}{{ item.category }}"
-                        class="menu__link {% if request.resolver_match.url_name == item.link %} menu__link_active {% endif %}">{{ item.title }}
+                        class="menu__link {% if request.resolver_match.view_name == item.link %} menu__link_active {% endif %}">{{ item.title }}
                 </a>
                 </li>
             {% endfor %}
             {% if user.is_authenticated %}
                 <li class="menu__list">
-                    <a href="{% url 'auth:edit' %}" class="menu__link">
+                    <a href="{% url 'auth:edit' %}"
+                       class="menu__link {% if request.resolver_match.view_name == 'auth:edit' %} menu__link_active {% endif %}">
                         My Profile ({{ user.first_name|default:'user' }})
                     </a>
                 </li>
                 <li class="menu__list"><a href="{% url 'auth:logout' %}"
-                       class="menu__link">logout</a></li>
+                                          class="menu__link">logout</a></li>
             {% else %}
                 <li class="menu__list">
                     <a href="{% url 'auth:register' %}"
-                       class="menu__link">sign up
+                       class="menu__link {% if request.resolver_match.view_name == 'auth:register' %} menu__link_active {% endif %}">sign
+                        up
                     </a>
                 </li>
                 <li class="menu__list"><a href="{% url 'auth:login' %}"
-                                          class="menu__link">sign in</a></li>
+                                          class="menu__link {% if request.resolver_match.view_name == 'auth:login' %} menu__link_active {% endif %}">sign
+                    in</a></li>
             {% endif %}
 
 

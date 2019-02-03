@@ -631,8 +631,6 @@ p {
     margin-bottom: 30px;
     padding-left: 50px;
 
-    background-image: url(/static/img/product-1-lg.jpg);
-
     -ms-flex-preferred-size: 570px;
     flex-basis: 570px;
 }
@@ -667,6 +665,7 @@ p {
     min-height: 516px;
 
     background-color: #f9f4f1;
+    background-image: url(/static/img/back-img.jpg);
 }
 
 .mobile-h4 {
