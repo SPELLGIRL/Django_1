@@ -5,7 +5,6 @@ from .models import Product, Category, CatalogMenu, MainMenu, NewMenu, Address
 from random import sample
 import os
 
-
 main_menu_links = MainMenu.objects.all()
 
 content = {
@@ -34,7 +33,7 @@ def index(request: HttpRequest, current_product_category=''):
         'title': 'Main',
         'new_menu_links': new_menu_links,
         'current_product_category': current_product_category,
-        'new_menu_products': new_menu_products
+        'new_menu_products': new_menu_products,
     }
     for category in used_product_categories:
         _temp = list(Product.objects.filter(category__name=category))
@@ -64,7 +63,7 @@ def products(request: HttpRequest, current_product_category=''):
         'catalog_menu_links': catalog_menu_links,
         'current_product_category': current_product_category,
         'catalog_menu_products': sample(catalog_menu_products,
-                                        len(catalog_menu_products))
+                                        len(catalog_menu_products)),
     }
 
     for category in used_product_categories:
@@ -103,7 +102,7 @@ def details(request: HttpRequest, product_id=None, color=None, size=None):
         'current_product': current_product,
         'product_id': product_id,
         'img_link': image_link,
-        'same_products': sample(same_products, len(same_products))
+        'same_products': sample(same_products, len(same_products)),
         # 'product_desc': current_product.full_description,
         # 'product_price': current_product.price,
         # 'product_category': current_product.mark,
@@ -117,7 +116,7 @@ def contacts(request: HttpRequest):
     addresses = list(Address.objects.all())
     inner_content = {
         'addresses': addresses,
-        'title': 'Contacts'
+        'title': 'Contacts',
     }
     inner_content = {**content, **inner_content}
     return render(request, 'mainapp/contacts.html', inner_content)

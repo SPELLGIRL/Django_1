@@ -1,0 +1,11 @@
+{% extends 'basketapp/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    {% for item in products %}
+    {% if forloop.counter <= 12 %}
+        {% include 'mainapp/include/inc_product_preview.html' %}
+    {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

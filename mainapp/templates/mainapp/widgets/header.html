@@ -21,6 +21,12 @@
                 </li>
                 <li class="menu__list"><a href="{% url 'auth:logout' %}"
                                           class="menu__link">logout</a></li>
+                <li class="menu__list basket">
+                    <a href="{% url 'basket:view' %}" alt="basket"
+                       class="menu__link {% if request.resolver_match.view_name == 'basket:view' %} menu__link_active {% endif %}">
+                        Корзина ({{ request.user.basket.all | length }})
+                    </a>
+                </li>
             {% else %}
                 <li class="menu__list">
                     <a href="{% url 'auth:register' %}"
@@ -34,7 +40,7 @@
             {% endif %}
 
 
-            <li class=" menu__list search"><img
+            <li class="menu__list search"><img
                     src="{% static 'img/search.svg' %}" alt="search"></li>
         </ul>
     </nav>
