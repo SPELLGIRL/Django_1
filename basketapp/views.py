@@ -13,13 +13,10 @@ content = {
 
 
 def basket(request: HttpRequest):
-    # products = Basket.objects.filter(user=request.user).values_list('product_id', flat=True)
-    products = Product.objects.filter(
-        id__in=Basket.objects.filter(user=request.user).values_list(
-            'product_id', flat=True))
     inner_content = {
         'title': 'Cart',
-        'products': products
+        'products': Basket.objects.filter(user=request.user).order_by(
+            'product__category')
     }
 
     inner_content = {**content, **inner_content}

@@ -24,7 +24,7 @@
                 <li class="menu__list basket">
                     <a href="{% url 'basket:view' %}" alt="basket"
                        class="menu__link {% if request.resolver_match.view_name == 'basket:view' %} menu__link_active {% endif %}">
-                        Корзина ({{ request.user.basket.all | length }})
+                        Корзина ({{ request.user.basket.all.0.total_quantity }})
                     </a>
                 </li>
             {% else %}

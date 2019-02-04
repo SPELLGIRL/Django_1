@@ -12,5 +12,22 @@ class Basket(models.Model):
     add_datetime = models.DateTimeField(verbose_name='время',
                                         auto_now_add=True)
 
-    # def total(self):
-    #     return sum(item.quantity for item in Basket.objects.all())
+    @property
+    def cost(self):
+        return self.product.price * self.quantity
+
+    @property
+    def total_quantity(self):
+        products = Basket.objects.filter(user=self.user)
+        total_quantity = 0
+        for item in products:
+            total_quantity += item.quantity
+        return total_quantity
+
+    @property
+    def total_cost(self):
+        products = Basket.objects.filter(user=self.user)
+        total_cost = 0
+        for item in products:
+            total_cost += item.cost
+        return total_cost

@@ -70,6 +70,8 @@ def products(request: HttpRequest, current_product_category=''):
         _temp = list(Product.objects.filter(category__name=category))
         inner_content[category + '_products'] = sample(_temp, len(_temp))
 
+
+
     inner_content = {**content, **inner_content}
 
     return render(request, 'mainapp/products.html', inner_content)
@@ -103,9 +105,8 @@ def details(request: HttpRequest, product_id=None, color=None, size=None):
         'product_id': product_id,
         'img_link': image_link,
         'same_products': sample(same_products, len(same_products)),
-        # 'product_desc': current_product.full_description,
-        # 'product_price': current_product.price,
-        # 'product_category': current_product.mark,
+        'product_desc': current_product.full_description,
+        'product_price': current_product.price,
     }
     inner_content = {**content, **inner_content}
 

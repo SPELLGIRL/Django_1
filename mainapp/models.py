@@ -24,7 +24,7 @@ class CatalogMenu(models.Model):
     title = models.CharField(max_length=20, verbose_name='Заголовок')
     category = models.OneToOneField(
         Category,
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
         unique=True,
         verbose_name='Категория'
     )
@@ -37,7 +37,7 @@ class NewMenu(models.Model):
     title = models.CharField(max_length=20, verbose_name='Заголовок')
     category = models.OneToOneField(
         Category,
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
         unique=True,
         verbose_name='Категория'
     )
@@ -78,6 +78,14 @@ class Product(models.Model):
         blank=True,
         verbose_name='Категория'
     )
+
+    full_description = models.TextField(verbose_name='Подробное описание',
+                                        blank=True)
+
+    price = models.DecimalField(verbose_name='Цена',
+                                default=0,
+                                max_digits=8,
+                                decimal_places=2)
 
     def __str__(self):
         return self.title
