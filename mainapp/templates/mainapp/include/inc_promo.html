@@ -12,10 +12,18 @@
                                  {{ item.small_img_path.url }}
                              {% endif %}
                              )">
-                    <h4 class="exclusive-h4">exclusive</h4>
+                    <h4 class="exclusive-h4">
+                        {% for i in item.category.all %}
+                            {{ i }}
+                            {% if not forloop.last %}
+                                <br>
+                            {% endif %}
+                        {% endfor %}
+                    </h4>
                     <h2 class="exclusive-h2">{{ item.title|title }}</h2>
                     <p class="exclusive-p">{{ item.description|capfirst|safe }}</p>
-                    <a class="button button-order" href="{% url 'product:product' %}">Order
+                    <a class="button button-order"
+                       href="{% url 'product:main' item.id %}">Order
                         Us<img
                                 src="{% static 'img/arrow.png' %}" alt="arrow"
                                 class="arrow"></a>
