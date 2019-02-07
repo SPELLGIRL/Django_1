@@ -19,15 +19,11 @@ class Basket(models.Model):
     @property
     def total_quantity(self):
         products = Basket.objects.filter(user=self.user)
-        total_quantity = 0
-        for item in products:
-            total_quantity += item.quantity
-        return total_quantity
+        total = sum([x.quantity for x in products])
+        return total
 
     @property
     def total_cost(self):
         products = Basket.objects.filter(user=self.user)
-        total_cost = 0
-        for item in products:
-            total_cost += item.cost
-        return total_cost
+        cost = sum([x.cost for x in products])
+        return cost

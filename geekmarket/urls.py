@@ -22,14 +22,14 @@ from django.urls import path
 import mainapp.views as controller
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', controller.index, name='home'),
-    path('auth/', include('authapp.urls', namespace='auth')),
-    path('products/', include('mainapp.catalog_urls', namespace='catalog')),
-    path('details/', include('mainapp.details_urls', namespace='product')),
-    path('basket/', include('basketapp.urls', namespace='basket')),
     path('contacts/', controller.contacts, name='contacts'),
-    path('<str:current_product_category>/', controller.index, name='home')
+    path('admin/', admin.site.urls),
+
+    path('products/', include('mainapp.catalog_urls', namespace='catalog')),
+    path('auth/', include('authapp.urls', namespace='auth')),
+    path('basket/', include('basketapp.urls', namespace='basket')),
+
+    path('', include('mainapp.urls', namespace='home')),
 ]
 
 if settings.DEBUG:
