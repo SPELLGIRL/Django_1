@@ -29,7 +29,7 @@ def login(request: HttpRequest):
     if request.method == 'POST' and login_form.is_valid():
         username = request.POST['username']
         password = request.POST['password']
-        next_url = request.POST['next'] or '/'
+        next_url = request.POST.get('next', '/')
 
         user = auth.authenticate(username=username, password=password)
         if user and user.is_active:

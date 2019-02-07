@@ -1,0 +1,44 @@
+{% extends 'basketapp/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        {% if basket %}
+            <p>Итого: {{ basket.0.total_cost|floatformat:0 }} $</p>
+            <p>Общее количество: ({{ basket.0.total_quantity }} шт)</p><br>
+            <ul>
+                {% for item in basket %}
+                    <b>
+                        <li class="basket-item">
+                            {% if forloop.counter <= 12 %}
+                                <p>
+                                    <a href="{% url 'catalog:product' item.product_id %}">
+                                        {{ item.product.title|title }}
+                                    </a>
+                                </p>
+                                Стоимость: {{ item.product.price }}$
+                                (Общая: {{ item.cost }}$)<br>
+                                Количество:
+                                <button class="basket-item-remove"
+                                        data-id="{{ item.product_id }}">
+                                    -
+                                </button>
+                                <span class="basket-item-quantity">{{ item.quantity }}</span>
+                                <button class="basket-item-add"
+                                        data-id="{{ item.product_id }}">
+                                    +
+                                </button>
+                                <br>
+                                <button class="basket-item-delete"
+                                        data-id="{{ item.product_id }}">
+                                    Удалить
+                                </button>
+                            {% endif %}
+                        </li>
+                    </b><br>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h4>Товаров пока нет</h4>
+        {% endif %}
+    </div>
+{% endblock %}

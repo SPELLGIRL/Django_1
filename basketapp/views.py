@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponseRedirect, get_object_or_404, \
-    reverse, Http404
-from django.http import HttpRequest
+    reverse
+from django.http import HttpRequest, JsonResponse
 from django.contrib.auth.decorators import login_required
 from .models import Basket
 from mainapp.models import Product, MainMenu
@@ -22,7 +22,7 @@ def basket(request: HttpRequest):
 
     inner_content = {**content, **inner_content}
 
-    return render(request, 'basketapp/basket.html', inner_content)
+    return render(request, 'basketapp/index.html', inner_content)
 
 
 @login_required
@@ -37,6 +37,12 @@ def basket_add(request: HttpRequest, pk: int):
 
     basket_product.quantity += 1
     basket_product.save()
+
+    if request.is_ajax():
+        return JsonResponse({
+            'quantity': Basket.objects.get(user=request.user,
+                                           product=product).quantity
+        })
 
     if 'login' in request.META.get('HTTP_REFERER'):
         return HttpResponseRedirect(
@@ -57,7 +63,20 @@ def basket_remove(request: HttpRequest, pk: int):
         basket_product.quantity -= 1
         basket_product.save()
 
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    if request.is_ajax():
+        if basket_product.quantity > 1:
+            return JsonResponse({
+                'quantity': Basket.objects.get(user=request.user,
+                                               product=pk).quantity
+            })
+        else:
+            return JsonResponse({})
+
+    if 'login' in request.META.get('HTTP_REFERER'):
+        return HttpResponseRedirect(
+            reverse('catalog:product', args=[pk]))
+    else:
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 @login_required
@@ -65,4 +84,11 @@ def basket_delete(request: HttpRequest, pk: int):
     basket_product = get_object_or_404(Basket, user=request.user, product=pk)
     basket_product.delete()
 
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    if request.is_ajax():
+        return JsonResponse({})
+
+    if 'login' in request.META.get('HTTP_REFERER'):
+        return HttpResponseRedirect(
+            reverse('catalog:product', args=[product.id]))
+    else:
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

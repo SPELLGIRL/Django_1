@@ -105,7 +105,7 @@ def details(request: HttpRequest, product_id=None, color=None, size=None):
         category__in=current_product.category.all()))
     inner_content = {
         'title': current_product.title,
-        'products_menu_category':
+        'catalog_menu_links':
             [{'title': 'all', 'category': ''}]
             + catalog_menu_links,
         'color': color,
