@@ -1354,13 +1354,14 @@ p {
 .profile {
     padding: 20px 10px 10px;
     margin: 0 auto;
+    flex-direction: column;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
 }
 
 .profile-form {
-    margin: 10px 20px;
+    margin: 10px 20%;
     height: 200px;
     display: flex;
     flex-direction: column;
@@ -1368,19 +1369,41 @@ p {
     justify-content: space-around;
 }
 
+.basket-products {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20%;
+}
+
 .basket {
 	display: block;
 	width: 23px;
 	height: 23px;
 	background-image: url(/static/img/basket.png);
+
+}
+
+.basket-info {
+	display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 30px;
+    width: 150px;
     text-decoration: none;
     color: #555;
 }
 
-.basket span {
-	display: block;
-    margin-left: 30px;
-    width: 150px;
+.basket-info p {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.basket-item {
+    margin-bottom: 10px;
+}
+
+.basket-item-none {
+    align-self: center;
 }
 
 @media screen and (max-width: 1300px) {

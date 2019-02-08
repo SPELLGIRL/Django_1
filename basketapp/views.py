@@ -40,8 +40,10 @@ def basket_add(request: HttpRequest, pk: int):
 
     if request.is_ajax():
         return JsonResponse({
-            'quantity': Basket.objects.get(user=request.user,
-                                           product=product).quantity
+            'quantity': basket_product.quantity,
+            'cost': basket_product.cost,
+            'total_quantity': basket_product.total_quantity,
+            'total_cost': basket_product.total_cost,
         })
 
     if 'login' in request.META.get('HTTP_REFERER'):
@@ -57,20 +59,17 @@ def basket_remove(request: HttpRequest, pk: int):
                                        user=request.user,
                                        product=pk)
 
-    if basket_product.quantity == 1:
-        basket_product.delete()
-    else:
+    if basket_product.quantity != 1:
         basket_product.quantity -= 1
         basket_product.save()
 
     if request.is_ajax():
-        if basket_product.quantity > 1:
-            return JsonResponse({
-                'quantity': Basket.objects.get(user=request.user,
-                                               product=pk).quantity
-            })
-        else:
-            return JsonResponse({})
+        return JsonResponse({
+            'quantity': basket_product.quantity,
+            'cost': basket_product.cost,
+            'total_quantity': basket_product.total_quantity,
+            'total_cost': basket_product.total_cost,
+        })
 
     if 'login' in request.META.get('HTTP_REFERER'):
         return HttpResponseRedirect(
@@ -85,10 +84,20 @@ def basket_delete(request: HttpRequest, pk: int):
     basket_product.delete()
 
     if request.is_ajax():
-        return JsonResponse({})
+        _check = Basket.objects.filter(user=request.user).first()
+        if _check:
+            return JsonResponse({
+                'total_quantity': _check.total_quantity,
+                'total_cost': _check.total_cost,
+            })
+        else:
+            return JsonResponse({
+                'total_quantity': 0,
+                'total_cost': 0,
+            })
 
     if 'login' in request.META.get('HTTP_REFERER'):
         return HttpResponseRedirect(
-            reverse('catalog:product', args=[product.id]))
+            reverse('catalog:product', args=[pk]))
     else:
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
