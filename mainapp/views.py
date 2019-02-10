@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpRequest, HttpResponseRedirect
 from django.urls import reverse
 from .models import Product, Category, CatalogMenu, MainMenu, NewMenu, Address
+from basketapp.models import Basket
 from random import sample
 import os
 
@@ -10,6 +11,13 @@ main_menu_links = MainMenu.objects.all()
 content = {
     'main_menu_links': main_menu_links
 }
+
+
+def get_basket(user):
+    if user.is_authenticated:
+        return Basket.objects.filter(user=user)
+    else:
+        return None
 
 
 def index(request: HttpRequest, current_product_category=''):
@@ -34,6 +42,7 @@ def index(request: HttpRequest, current_product_category=''):
         'new_menu_links': new_menu_links,
         'current_product_category': current_product_category,
         'new_menu_products': new_menu_products,
+        'basket': get_basket(request.user),
     }
     for category in used_product_categories:
         _temp = list(Product.objects.filter(category__name=category))
@@ -64,13 +73,12 @@ def products(request: HttpRequest, current_product_category=''):
         'current_product_category': current_product_category,
         'catalog_menu_products': sample(catalog_menu_products,
                                         len(catalog_menu_products)),
+        'basket': get_basket(request.user),
     }
 
     for category in used_product_categories:
         _temp = list(Product.objects.filter(category__name=category))
         inner_content[category + '_products'] = sample(_temp, len(_temp))
-
-
 
     inner_content = {**content, **inner_content}
 
@@ -92,14 +100,14 @@ def details(request: HttpRequest, product_id=None, color=None, size=None):
     else:
         image_link = ''
 
-    catalog_menu_links = list(CatalogMenu.objects.all())
+    catalog_menu_links = [{'title': 'all',
+                           'category__name': ''}] + list(
+        CatalogMenu.objects.values('title', 'category__name'))
     same_products = list(Product.objects.exclude(pk=product_id).filter(
         category__in=current_product.category.all()))
     inner_content = {
         'title': current_product.title,
-        'products_menu_category':
-            [{'title': 'all', 'category': ''}]
-            + catalog_menu_links,
+        'catalog_menu_links': catalog_menu_links,
         'color': color,
         'current_product': current_product,
         'product_id': product_id,
@@ -107,6 +115,7 @@ def details(request: HttpRequest, product_id=None, color=None, size=None):
         'same_products': sample(same_products, len(same_products)),
         'product_desc': current_product.full_description,
         'product_price': current_product.price,
+        'basket': get_basket(request.user),
     }
     inner_content = {**content, **inner_content}
 
@@ -118,6 +127,7 @@ def contacts(request: HttpRequest):
     inner_content = {
         'addresses': addresses,
         'title': 'Contacts',
+        'basket': get_basket(request.user),
     }
     inner_content = {**content, **inner_content}
     return render(request, 'mainapp/contacts.html', inner_content)

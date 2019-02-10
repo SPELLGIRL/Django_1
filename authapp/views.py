@@ -6,12 +6,20 @@ from django.urls import reverse
 
 from .forms import LoginForm, RegisterForm, UpdateForm
 from mainapp.models import MainMenu
+from basketapp.models import Basket
 
 main_menu_links = MainMenu.objects.all()
 
 content = {
     'main_menu_links': main_menu_links
 }
+
+
+def get_basket(user):
+    if user.is_authenticated:
+        return Basket.objects.filter(user=user)
+    else:
+        return []
 
 
 def login(request: HttpRequest):
@@ -21,11 +29,12 @@ def login(request: HttpRequest):
     if request.method == 'POST' and login_form.is_valid():
         username = request.POST['username']
         password = request.POST['password']
+        next_url = request.POST.get('next', '/')
 
         user = auth.authenticate(username=username, password=password)
         if user and user.is_active:
             auth.login(request, user)
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect(next_url)
 
     inner_content = {
         'title': title,
@@ -82,8 +91,10 @@ def edit(request: HttpRequest):
 
     inner_content = {
         'title': title,
-        'update_form': update_form
+        'update_form': update_form,
+        'basket': get_basket(request.user),
     }
+
     inner_content = {**content, **inner_content}
 
     return render(request, 'authapp/edit.html', inner_content)
