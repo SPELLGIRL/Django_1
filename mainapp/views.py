@@ -100,14 +100,14 @@ def details(request: HttpRequest, product_id=None, color=None, size=None):
     else:
         image_link = ''
 
-    catalog_menu_links = list(CatalogMenu.objects.all())
+    catalog_menu_links = [{'title': 'all',
+                           'category__name': ''}] + list(
+        CatalogMenu.objects.values('title', 'category__name'))
     same_products = list(Product.objects.exclude(pk=product_id).filter(
         category__in=current_product.category.all()))
     inner_content = {
         'title': current_product.title,
-        'catalog_menu_links':
-            [{'title': 'all', 'category': ''}]
-            + catalog_menu_links,
+        'catalog_menu_links': catalog_menu_links,
         'color': color,
         'current_product': current_product,
         'product_id': product_id,
