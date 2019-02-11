@@ -23,13 +23,16 @@ import mainapp.views as controller
 
 urlpatterns = [
     path('contacts/', controller.contacts, name='contacts'),
-    path('admin/', admin.site.urls),
+
 
     path('products/', include('mainapp.catalog_urls', namespace='catalog')),
     path('auth/', include('authapp.urls', namespace='auth')),
     path('basket/', include('basketapp.urls', namespace='basket')),
 
     path('', include('mainapp.urls', namespace='home')),
+
+    # path('admin/', admin.site.urls),
+    path('admin/', include('adminapp.urls', namespace='admin')),
 ]
 
 if settings.DEBUG:

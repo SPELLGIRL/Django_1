@@ -76,7 +76,8 @@ class Product(models.Model):
     category = models.ManyToManyField(
         Category,
         blank=True,
-        verbose_name='Категория'
+        verbose_name='Категория',
+        related_name='products',
     )
 
     full_description = models.TextField(verbose_name='Подробное описание',

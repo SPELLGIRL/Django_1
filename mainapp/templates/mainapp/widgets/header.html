@@ -22,6 +22,14 @@
                         My Profile ({{ user.first_name|default:'user' }})
                     </a>
                 </li>
+                {% if user.is_superuser %}
+                <li class="menu__list">
+                    <a href="{% url 'admin:categories' %}"
+                       class="menu__link {% if request.resolver_match.namespace == 'admin' %} menu__link_active {% endif %}">
+                        Admin panel
+                    </a>
+                </li>
+                {% endif %}
                 <li class="menu__list"><a href="{% url 'auth:logout' %}"
                                           class="menu__link">logout</a></li>
             {% else %}
