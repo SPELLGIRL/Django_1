@@ -4,13 +4,8 @@
     <hr>
 
     <h1>{{ model.name|title }}</h1>
-
-    <a href="{% url 'admin:category_update' id=model.id %}">
-        Update
-    </a>
-    <a href="{% url 'admin:category_delete' id=model.id %}">
-        Delete
-    </a>
+    <a href="{% url 'admin:category_update' id=model.id %}">Update</a>
+    <a href="{% url 'admin:category_delete' id=model.id %}">Delete</a>
     <h2>Products:</h2>
     <ul>
         {% for product in products %}
@@ -23,7 +18,8 @@
         {% endfor %}
 
     </ul>
-    <p><a href="{% url 'admin:product_category' category=model.id %}">
-        All
-    </a></p>
+    <p>
+        <a href="{% url 'admin:product_category' category=model.id %}">All</a>
+    </p>
+    <p><a href="{% url 'admin:categories' %}">Back</a></p>
 {% endblock %}

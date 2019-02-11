@@ -4,6 +4,7 @@
     <hr>
 
     <h1>Categories list</h1>
+    <a href="{% url 'admin:category_create' %}">Create</a>
     <ul>
         {% for item in models %}
             <li>

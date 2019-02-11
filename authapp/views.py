@@ -1,7 +1,6 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.http import HttpRequest
 from django.contrib import auth
-
 from django.urls import reverse
 
 from .forms import LoginForm, RegisterForm, UpdateForm
