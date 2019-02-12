@@ -1,6 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpRequest, HttpResponseRedirect
-from django.urls import reverse
+from django.http import HttpRequest
 from .models import Product, Category, CatalogMenu, MainMenu, NewMenu, Address
 from basketapp.models import Basket
 from random import sample
@@ -21,19 +20,28 @@ def get_basket(user):
 
 
 def index(request: HttpRequest, current_product_category=''):
+    new_menu_check = NewMenu.objects.filter(category__is_active=True)
     if current_product_category != '':
         get_object_or_404(NewMenu,
                           category__name=current_product_category,
-                          pk__gt=1)
+                          pk__gt=1,
+                          category__is_active=True)
         new_menu_products = list(Product.objects.filter(
-            category__name=current_product_category))
+            category__name=current_product_category, is_active=True))
     else:
-        new_menu_products = list(Product.objects.filter(
-            category__name=NewMenu.objects.first().category.name))
+        if new_menu_check:
+            new_menu_products = list(Product.objects.filter(
+                category__name=new_menu_check.first().category.name,
+                is_active=True))
+        else:
+            new_menu_products = []
 
-    new_menu_links = [{'title': NewMenu.objects.first().title,
-                       'category__name': ''}] + list(
-        NewMenu.objects.values('title', 'category__name')[1:])
+    if new_menu_check:
+        new_menu_links = [{'title': new_menu_check.first().title,
+                           'category__name': ''}] + list(
+            new_menu_check.values('title', 'category__name')[1:])
+    else:
+        new_menu_links = []
 
     used_product_categories = ['trending', 'exclusive', 'promo', 'hot']
 
@@ -44,9 +52,14 @@ def index(request: HttpRequest, current_product_category=''):
         'new_menu_products': new_menu_products,
         'basket': get_basket(request.user),
     }
+
     for category in used_product_categories:
-        _temp = list(Product.objects.filter(category__name=category))
-        inner_content[category + '_products'] = sample(_temp, len(_temp))
+        if Category.objects.filter(name=category, is_active=True).first():
+            _temp = list(Product.objects.filter(category__name=category,
+                                                is_active=True))
+            if _temp:
+                inner_content[category + '_products'] = sample(_temp,
+                                                               len(_temp))
 
     inner_content = {**content, **inner_content}
     return render(request, 'mainapp/index.html', inner_content)
@@ -55,15 +68,18 @@ def index(request: HttpRequest, current_product_category=''):
 def products(request: HttpRequest, current_product_category=''):
     if current_product_category != '':
         get_object_or_404(CatalogMenu,
-                          category__name=current_product_category)
+                          category__name=current_product_category,
+                          category__is_active=True)
         catalog_menu_products = list(Product.objects.filter(
-            category__name=current_product_category))
+            category__name=current_product_category, is_active=True))
     else:
-        catalog_menu_products = list(Product.objects.all())
+        catalog_menu_products = list(
+            Product.objects.filter(is_active=True))
 
     catalog_menu_links = [{'title': 'all',
                            'category__name': ''}] + list(
-        CatalogMenu.objects.values('title', 'category__name'))
+        CatalogMenu.objects.filter(category__is_active=True).values('title',
+                                                                    'category__name'))
 
     used_product_categories = ['exclusive', 'promo']
 
@@ -77,8 +93,12 @@ def products(request: HttpRequest, current_product_category=''):
     }
 
     for category in used_product_categories:
-        _temp = list(Product.objects.filter(category__name=category))
-        inner_content[category + '_products'] = sample(_temp, len(_temp))
+        if Category.objects.filter(name=category, is_active=True).first():
+            _temp = list(Product.objects.filter(category__name=category,
+                                                is_active=True))
+            if _temp:
+                inner_content[category + '_products'] = sample(_temp,
+                                                               len(_temp))
 
     inner_content = {**content, **inner_content}
 
@@ -86,7 +106,7 @@ def products(request: HttpRequest, current_product_category=''):
 
 
 def details(request: HttpRequest, product_id=None, color=None, size=None):
-    current_product = get_object_or_404(Product, pk=product_id)
+    current_product = get_object_or_404(Product, pk=product_id, is_active=True)
 
     if current_product.big_img_path and size is None:
         image_link = current_product.big_img_path.url
@@ -102,9 +122,12 @@ def details(request: HttpRequest, product_id=None, color=None, size=None):
 
     catalog_menu_links = [{'title': 'all',
                            'category__name': ''}] + list(
-        CatalogMenu.objects.values('title', 'category__name'))
-    same_products = list(Product.objects.exclude(pk=product_id).filter(
-        category__in=current_product.category.all()))
+        CatalogMenu.objects.filter(category__is_active=True).values('title',
+                                                                    'category__name'))
+    same_products = list(
+        Product.objects.exclude(pk=product_id).filter(is_active=True,
+                                                      category__in=current_product.category.filter(
+                                                          is_active=True)))
     inner_content = {
         'title': current_product.title,
         'catalog_menu_links': catalog_menu_links,

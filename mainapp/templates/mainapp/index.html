@@ -31,51 +31,60 @@
         </div>
     </div>
     <main>
-        <div class="new">
-            <div class="container">
-                <div class="background padding-content padding-products-block products-block">
-                    <div class="products-heading">
-                        {% include 'mainapp/widgets/new_menu.html' %}
-                        <a class="explore-all"
-                           href="{% url 'catalog:index' %}">
-                            explore all <i class="fas fa-angle-right"></i></a>
-                    </div>
-                    <div class="new-products">
-                        {% for item in new_menu_products %}
-                            {% if forloop.counter <= 6 %}
-                                {% include 'mainapp/include/inc_product_preview.html' %}
-                            {% endif %}
-                        {% endfor %}
+        {% if new_menu_links or new_menu_products %}
+            <div class="new">
+                <div class="container">
+                    <div class="background padding-content padding-products-block products-block">
+                        {% if new_menu_links %}
+                            <div class="products-heading">
+                                {% include 'mainapp/widgets/new_menu.html' %}
+                                <a class="explore-all"
+                                   href="{% url 'catalog:index' %}">
+                                    explore all <i
+                                        class="fas fa-angle-right"></i></a>
+                            </div>
+                        {% endif %}
+                        {% if new_menu_products %}
+                            <div class="new-products">
+                                {% for item in new_menu_products %}
+                                    {% if forloop.counter <= 6 %}
+                                        {% include 'mainapp/include/inc_product_preview.html' %}
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
-        </div>
+        {% endif %}
 
         <div class="promo">
             {% include 'mainapp/include/inc_promo.html' %}
         </div>
 
-        <div class="trending">
-            <div class="container">
-                <div class="background padding-content padding-products-block products-block">
-                    <div class="products-heading trendings-heading">
-                        <p class="trendings-title">Trending Products</p>
-                        <a class="explore-all"
-                           href="{% url 'catalog:index' %}">
-                            explore all <i class="fas fa-angle-right"></i></a>
-                    </div>
-                    <div class="trending-products">
-                        {% with size=370 %}
-                            {% for item in trending_products %}
-                                {% if forloop.counter <= 6 %}
-                                    {% include 'mainapp/include/inc_product_preview.html' %}
-                                {% endif %}
-                            {% endfor %}
-                        {% endwith %}
+        {% if trending_products %}
+            <div class="trending">
+                <div class="container">
+                    <div class="background padding-content padding-products-block products-block">
+                        <div class="products-heading trendings-heading">
+                            <p class="trendings-title">Trending Products</p>
+                            <a class="explore-all"
+                               href="{% url 'catalog:index' %}">
+                                explore all <i class="fas fa-angle-right"></i></a>
+                        </div>
+                        <div class="trending-products">
+                            {% with size=370 %}
+                                {% for item in trending_products %}
+                                    {% if forloop.counter <= 6 %}
+                                        {% include 'mainapp/include/inc_product_preview.html' %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endwith %}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        {% endif %}
 
         <div class="hot">
             <div class="container">
@@ -104,54 +113,55 @@
             </div>
         </div>
 
-        <div class="exclusive">
-            <div class="container">
-                <div class="padding-content padding-products-block split">
-                    {% with item=exclusive_products|first %}
-                        <section
-                                class="background split-2__all hhpb split-2__1"
-                                style="background-image: url(
-                                        {% if item.small_img_path %}
-                                            {{ item.small_img_path.url }}
-                                        {% else %}
-                                            {{ item.big_img_path.url }}
+        {% if exclusive_products %}
+            <div class="exclusive">
+                <div class="container">
+                    <div class="padding-content padding-products-block split">
+                        {% with item=exclusive_products|first %}
+                            <section
+                                    class="background split-2__all hhpb split-2__1"
+                                    style="background-image: url(
+                                            {% if item.small_img_path %}
+                                                {{ item.small_img_path.url }}
+                                            {% else %}
+                                                {{ item.big_img_path.url }}
+                                            {% endif %}
+                                            )">
+                                <h4 class="exclusive-h4">
+                                    {% for i in item.category.all %}
+                                        {{ i }}
+                                        {% if not forloop.last %}
+                                            <br>
                                         {% endif %}
-                                        )">
-                            <h4 class="exclusive-h4">
-                                {% for i in item.category.all %}
-                                    {{ i }}
-                                    {% if not forloop.last %}
-                                        <br>
+                                    {% endfor %}
+                                </h4>
+                                <h2 class="exclusive-h2">{{ item.title|title }}</h2>
+                                <p class="exclusive-p">
+                                    {{ item.description|capfirst|safe }}
+                                </p>
+                                <a class="background button button-order"
+                                   href="{% url 'catalog:product' item.id %}">Order
+                                    Us<img
+                                            src="{% static 'img/arrow.png' %}"
+                                            alt="arrow"
+                                            class="arrow">
+                                </a>
+                            </section>
+                        {% endwith %}
+                        <section
+                                class="split-2__all exclusive-products split-2__2">
+                            {% for item in exclusive_products %}
+                                {% if forloop.counter != 1 %}
+                                    {% if 1 < forloop.counter <= 5 %}
+                                        {% include 'mainapp/include/inc_product_preview.html' %}
                                     {% endif %}
-                                {% endfor %}
-                            </h4>
-                            <h2 class="exclusive-h2">{{ item.title|title }}</h2>
-                            <p class="exclusive-p">
-                                {{ item.description|capfirst|safe }}
-                            </p>
-                            <a class="background button button-order"
-                               href="{% url 'catalog:product' item.id %}">Order
-                                Us<img
-                                        src="{% static 'img/arrow.png' %}"
-                                        alt="arrow"
-                                        class="arrow">
-                            </a>
-
-                        </section>
-                    {% endwith %}
-                    <section
-                            class="split-2__all exclusive-products split-2__2">
-                        {% for item in exclusive_products %}
-                            {% if forloop.counter != 1 %}
-                                {% if forloop.counter <= 5 %}
-                                    {% include 'mainapp/include/inc_product_preview.html' %}
                                 {% endif %}
-                            {% endif %}
-                        {% endfor %}
-                    </section>
+                            {% endfor %}
+                        </section>
+                    </div>
                 </div>
             </div>
-        </div>
+        {% endif %}
 
         <div class="mobile">
             <div class="container">
