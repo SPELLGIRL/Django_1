@@ -2,7 +2,9 @@
 {% load static %}
 {% block content %}
     <hr>
-    <h1>{{ user_profile.username|title }}</h1>
+    <h1 class="{% if not user_profile.is_active %}not_is_active{% endif %}">
+        {{ user_profile.username|title }}
+    </h1>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}

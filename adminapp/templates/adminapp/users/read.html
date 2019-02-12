@@ -2,8 +2,9 @@
 {% load static %}
 {% block content %}
     <hr>
-
-    <h1>login: {{ user_profile.username }}</h1>
+    <h1 class="{% if not user_profile.is_active %}not_is_active{% endif %}">
+        login: {{ user_profile.username }}
+    </h1>
     <ul>
         {% if user_profile.first_name %}
             <li>Имя: {{ user_profile.first_name }}</li>
@@ -20,6 +21,8 @@
         </div>
     {% endif %}
     <a href="{% url 'admin:user_update' id=user_profile.id %}">Update</a>
-    <a href="{% url 'admin:user_delete' id=user_profile.id %}">Delete</a>
+    {% if user_profile.is_active %}
+        <a href="{% url 'admin:user_delete' id=user_profile.id %}">Delete</a>
+    {% endif %}
     <p><a href="{% url 'admin:users' %}">Back</a></p>
 {% endblock %}

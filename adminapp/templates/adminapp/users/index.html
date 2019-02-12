@@ -9,8 +9,14 @@
         {% for user_profile in models %}
             <li>
                 <a href="{% url 'admin:user_read' id=user_profile.id %}">
-                    {{ user_profile.username }}
-                    ({{ user_profile.first_name|title }} {{ user_profile.last_name|title }})
+                    <span class="
+                        {% if not user_profile.is_active %}
+                            not_is_active
+                        {% endif %}">
+                        {{ user_profile.username }}
+                    </span>
+                    ({{ user_profile.first_name|title }}
+                    {{ user_profile.last_name|title }})
                 </a>
             </li>
         {% endfor %}

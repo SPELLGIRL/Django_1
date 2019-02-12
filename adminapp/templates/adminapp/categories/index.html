@@ -8,7 +8,8 @@
     <ul>
         {% for item in models %}
             <li>
-                <a href="{% url 'admin:category_read' id=item.id %}">
+                <a href="{% url 'admin:category_read' id=item.id %}"
+                   class="{% if not item.is_active %}not_is_active{% endif %}">
                     {{ item.name|title }}
                 </a>
             </li>
