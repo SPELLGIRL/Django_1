@@ -1,7 +1,7 @@
-from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
+from django.http import HttpRequest, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, reverse
 from django.contrib.auth.decorators import user_passes_test
-from mainapp.models import Category, Product
+from mainapp.models import Category
 from adminapp.models.categories import CategoryEditForm
 
 
@@ -10,6 +10,7 @@ def index(request: HttpRequest):
     models = Category.objects.all()
 
     content = {
+        'title': 'Categories list',
         'models': models,
     }
 
@@ -18,7 +19,6 @@ def index(request: HttpRequest):
 
 @user_passes_test(lambda user: user.is_superuser)
 def create(request: HttpRequest):
-
     if request.method == 'POST':
         form = CategoryEditForm(request.POST, request.FILES)
         if form.is_valid():
@@ -39,9 +39,9 @@ def create(request: HttpRequest):
 def read(request: HttpRequest, id):
     model = get_object_or_404(Category, pk=id)
     content = {
-        'title': 'Category list',
+        'title': 'Category',
         'model': model,
-        'products': model.products.all()[:5],
+        'products': model.products.all()[:20],
     }
 
     return render(request, 'adminapp/categories/read.html', content)
@@ -57,13 +57,13 @@ def update(request: HttpRequest, id):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('adminapp:categories'))
-
     else:
         form = CategoryEditForm(instance=model)
 
     content = {
         'title': 'Category update',
         'form': form,
+        'model': model,
     }
 
     return render(request, 'adminapp/categories/update.html', content)
@@ -84,4 +84,3 @@ def delete(request: HttpRequest, id):
     }
 
     return render(request, 'adminapp/categories/delete.html', content)
-

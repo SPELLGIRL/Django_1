@@ -8,20 +8,42 @@
             {{ title|capfirst }}
         {% endblock %}
     </title>
+    {% block css %}
+        <style>
+            .products__item {
+                position: relative;
+
+                width: 270px;
+                height: 270px;
+                margin-right: 30px;
+                margin-bottom: 30px;
+            }
+
+            .background {
+                background: center center no-repeat;
+                background-size: cover;
+            }
+
+            .user_avatar {
+                margin: 10px 10px;
+            }
+        </style>
+    {% endblock %}
 </head>
 <body>
 <div class="wrapper">
     <div class="top">
-    <div class="container">
-        {% block menu %}
-            {% include 'adminapp/menu.html' %}
-        {% endblock %}
-    </div>
         <div class="content">
-            {% block content %}
-            {% endblock %}
+            <div class="container">
+                {% block menu %}
+                    {% include 'adminapp/menu.html' %}
+                {% endblock %}
+                <div class="profile">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
         </div>
     </div>
-</div>
 </body>
 </html>

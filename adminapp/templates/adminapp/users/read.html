@@ -1,0 +1,25 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+{% block content %}
+    <hr>
+
+    <h1>login: {{ user_profile.username }}</h1>
+    <ul>
+        {% if user_profile.first_name %}
+            <li>Имя: {{ user_profile.first_name }}</li>
+        {% endif %}
+        {% if user_profile.last_name %}
+            <li>Фамилия: {{ user_profile.last_name }}</li>
+        {% endif %}
+        <li>E-mail: {{ user_profile.email }}</li>
+        <li>Возраст: {{ user_profile.age }}</li>
+    </ul>
+    {% if user_profile.avatar %}
+        <div class="background products__item user_avatar"
+             style="background-image: url(/media/{{ user_profile.avatar }}">
+        </div>
+    {% endif %}
+    <a href="{% url 'admin:user_update' id=user_profile.id %}">Update</a>
+    <a href="{% url 'admin:user_delete' id=user_profile.id %}">Delete</a>
+    <p><a href="{% url 'admin:users' %}">Back</a></p>
+{% endblock %}
