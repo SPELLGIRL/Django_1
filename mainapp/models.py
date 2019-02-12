@@ -8,6 +8,8 @@ class Category(models.Model):
         verbose_name='Категория'
     )
 
+    is_active = models.BooleanField(default=True)
+
     def __str__(self):
         return self.name
 
@@ -76,7 +78,8 @@ class Product(models.Model):
     category = models.ManyToManyField(
         Category,
         blank=True,
-        verbose_name='Категория'
+        verbose_name='Категория',
+        related_name='products',
     )
 
     full_description = models.TextField(verbose_name='Подробное описание',
@@ -86,6 +89,8 @@ class Product(models.Model):
                                 default=0,
                                 max_digits=8,
                                 decimal_places=2)
+
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.title
