@@ -56,7 +56,8 @@ def update(request: HttpRequest, id):
 
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('adminapp:categories'))
+            return HttpResponseRedirect(
+                reverse('adminapp:category_read', args=[model.pk]))
     else:
         form = CategoryEditForm(instance=model)
 

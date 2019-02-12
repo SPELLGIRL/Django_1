@@ -3,7 +3,7 @@
 {% block content %}
     <hr>
 
-    <h1 class="{% if not item.is_active %}not_is_active{% endif %}">{{ model.name|title }}</h1>
+    <h1 class="{% if not model.is_active %}not_is_active{% endif %}">{{ model.name|title }}</h1>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
