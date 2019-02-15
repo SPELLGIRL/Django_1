@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpRequest
 from .models import Product, Category, CatalogMenu, MainMenu, NewMenu, Address
 from basketapp.models import Basket
@@ -65,16 +66,26 @@ def index(request: HttpRequest, current_product_category=''):
     return render(request, 'mainapp/index.html', inner_content)
 
 
-def products(request: HttpRequest, current_product_category=''):
+def products(request: HttpRequest, current_product_category='', page=1):
     if current_product_category != '':
         get_object_or_404(CatalogMenu,
                           category__name=current_product_category,
                           category__is_active=True)
         catalog_menu_products = list(Product.objects.filter(
-            category__name=current_product_category, is_active=True))
+            category__name=current_product_category, is_active=True).order_by(
+            'price'))
     else:
         catalog_menu_products = list(
             Product.objects.filter(is_active=True))
+
+    provider = Paginator(catalog_menu_products, 6)
+
+    try:
+        products_provider = provider.page(page)
+    except PageNotAnInteger:
+        products_provider = provider.page(1)
+    except EmptyPage:
+        products_provider = provider.page(provider.num_pages)
 
     catalog_menu_links = [{'title': 'all',
                            'category__name': ''}] + list(
@@ -87,8 +98,7 @@ def products(request: HttpRequest, current_product_category=''):
         'title': 'Catalog',
         'catalog_menu_links': catalog_menu_links,
         'current_product_category': current_product_category,
-        'catalog_menu_products': sample(catalog_menu_products,
-                                        len(catalog_menu_products)),
+        'provider': products_provider,
         'basket': get_basket(request.user),
     }
 

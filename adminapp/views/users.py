@@ -1,5 +1,6 @@
 from django.http import HttpRequest, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, reverse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import user_passes_test
 from authapp.forms import RegisterForm, CustomUser
 from adminapp.models.users import UserEditForm
@@ -9,8 +10,17 @@ from adminapp.models.users import UserEditForm
 def index(request: HttpRequest):
     users = CustomUser.objects.all()
 
+    provider = Paginator(users, 10)
+
+    try:
+        products_provider = provider.page(users)
+    except PageNotAnInteger:
+        products_provider = provider.page(1)
+    except EmptyPage:
+        products_provider = provider.page(provider.num_pages)
+
     content = {
-        'models': users,
+        'provider': products_provider,
     }
 
     return render(request, 'adminapp/users/index.html', content)

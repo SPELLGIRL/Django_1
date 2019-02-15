@@ -1,5 +1,6 @@
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, reverse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import user_passes_test
 from mainapp.models import Category, Product
 from adminapp.models.products import ProductEditForm
@@ -46,17 +47,26 @@ def read(request: HttpRequest, id):
 
 
 @user_passes_test(lambda user: user.is_superuser)
-def list_by_category(request: HttpRequest, pk):
+def list_by_category(request: HttpRequest, pk, page=1):
     title = 'админка/продукт'
 
     category = get_object_or_404(Category, pk=pk)
     products_list = Product.objects.filter(category__pk=pk).order_by(
         '-is_active')
 
+    provider = Paginator(products_list, 5)
+
+    try:
+        products_provider = provider.page(page)
+    except PageNotAnInteger:
+        products_provider = provider.page(1)
+    except EmptyPage:
+        products_provider = provider.page(provider.num_pages)
+
     content = {
         'title': title,
         'category': category,
-        'objects': products_list,
+        'provider': products_provider,
     }
 
     return render(request, 'adminapp/products/index.html', content)

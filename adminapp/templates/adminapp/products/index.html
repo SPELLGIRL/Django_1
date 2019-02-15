@@ -10,8 +10,19 @@
             <a href={% url 'admin:product_create' category.pk %}>новый
                 продукт</a>
         </button>
+        {% if provider.has_previous %}
+            <button>
+                <a href="{% url 'admin:products' category.pk %}/{{ provider.previous_page_number }}">Previous</a>
+            </button>
+        {% endif %}
+
+        {% if provider.has_next %}
+            <button>
+                <a href="{% url 'admin:products' category.pk %}/{{ provider.next_page_number }}">Next</a>
+            </button>
+        {% endif %}
         <hr>
-        {% for object in objects %}
+        {% for object in provider %}
             <div class="product_record">
                 <div class="product_name {% if not object.is_active %}not_is_active{% endif %}">
                     <b>{{ object.title|title }}</b>

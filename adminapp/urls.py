@@ -7,6 +7,7 @@ app_name = 'adminapp'
 urlpatterns = [
     # users
     path('users/index/', users.index, name='users'),
+    path('users/index/<int:pk>', users.index, name='users_page'),
     path('users/create/', users.create, name='user_create'),
     path('users/read/<int:id>', users.read, name='user_read'),
     path('users/update/<int:id>', users.update, name='user_update'),
@@ -26,6 +27,8 @@ urlpatterns = [
     path('products/read/<int:id>', products.read, name='product_read'),
     path('products/list/<int:pk>', products.list_by_category,
          name='products'),
+    path('products/list/<int:pk>/<int:page>/', products.list_by_category,
+         name='products_page'),
     path('products/update/<int:id>', products.update, name='product_update'),
     path('products/delete/<int:id>', products.delete, name='product_delete'),
 ]
