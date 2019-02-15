@@ -1,5 +1,6 @@
 {% extends 'adminapp/base.html' %}
 {% load static %}
+{% load custom_tags %}
 {% block content %}
     <hr>
     <h1 class="{% if not user_profile.is_active %}not_is_active{% endif %}">
@@ -17,7 +18,7 @@
     </ul>
     {% if user_profile.avatar %}
         <div class="background products__item user_avatar"
-             style="background-image: url(/media/{{ user_profile.avatar }}">
+             style="background-image: url({{ user_profile.avatar|media_folder_files }}">
         </div>
     {% endif %}
     <a href="{% url 'admin:user_update' id=user_profile.id %}">Update</a>

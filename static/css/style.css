@@ -1353,20 +1353,24 @@ p {
 
 .profile {
     display: flex;
-    flex-direction: column;
     padding: 20px 10px 10px;
     margin: 0 auto;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 .profile-form {
-    margin-left: 20%;
     height: 200px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     justify-content: space-around;
+}
+
+.user_avatar {
+    width: 150px;
+    height: 150px;
+    margin: 10px 20px;
 }
 
 .basket-products {
@@ -1376,15 +1380,15 @@ p {
 }
 
 .basket {
-	display: block;
-	width: 23px;
-	height: 23px;
-	background-image: url(/static/img/basket.png);
+    display: block;
+    width: 23px;
+    height: 23px;
+    background-image: url(/static/img/basket.png);
 
 }
 
 .basket-info {
-	display: flex;
+    display: flex;
     flex-direction: column;
     justify-content: flex-start;
     margin-left: 30px;

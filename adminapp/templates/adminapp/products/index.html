@@ -1,6 +1,6 @@
 {% extends 'adminapp/base.html' %}
 {% load staticfiles %}
-
+{% load custom_tags %}
 
 {% block content %}
     <div class="products_list">
@@ -28,7 +28,7 @@
                     <b>{{ object.title|title }}</b>
                 </div>
                 <div class="summary">
-                    <b>Цена: </b>{{ object.price }} руб
+                    <b>Цена: </b>{{ object.price|currency }}
                     <b>Количество: </b>{{ object.quantity }}
                 </div>
                 <div class="product_actions">

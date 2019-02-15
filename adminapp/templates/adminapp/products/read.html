@@ -1,5 +1,6 @@
 {% extends 'adminapp/base.html' %}
 {% load static %}
+{% load custom_tags %}
 {% block content %}
     <hr>
     <div class="product_read">
@@ -15,13 +16,13 @@
                          {% if object.small_img_path %}
                              {{ object.small_img_path.url }}
                          {% else %}
-                             {{ object.big_img_path.url }}
+                             {{ object.big_img_path|media_folder_files }}
                          {% endif %}
                          )">
             </div>
         {% endif %}
         <div class="summary">
-            <p><b>Цена: </b>{{ object.price }} руб</p>
+            <p><b>Цена: </b>{{ object.price|currency }}</p>
             <p><b>Количество: </b>{{ object.quantity }}</p>
             <p><b>В каталоге: </b>{% if object.is_active %}да{% else %}
                 нет{% endif %}</p>
