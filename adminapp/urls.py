@@ -22,10 +22,10 @@ urlpatterns = [
          name='category_delete'),
 
     # products
-    path('products/create/', products.create, name='product_create'),
+    path('products/create/<int:pk>', products.create, name='product_create'),
     path('products/read/<int:id>', products.read, name='product_read'),
-    path('products/list/<int:category>', products.list_by_category,
-         name='product_category'),
+    path('products/list/<int:pk>', products.list_by_category,
+         name='products'),
     path('products/update/<int:id>', products.update, name='product_update'),
     path('products/delete/<int:id>', products.delete, name='product_delete'),
 ]

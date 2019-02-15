@@ -19,7 +19,7 @@
         {% endfor %}
     </ul>
     <p>
-        <a href="{% url 'admin:product_category' category=model.id %}">All</a>
+        <a href="{% url 'admin:products' pk=model.id %}">All</a>
     </p>
     <p><a href="{% url 'admin:categories' %}">Back</a></p>
 {% endblock %}
