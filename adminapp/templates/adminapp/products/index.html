@@ -12,13 +12,13 @@
         </button>
         {% if provider.has_previous %}
             <button>
-                <a href="{% url 'admin:products' category.pk %}/{{ provider.previous_page_number }}">Previous</a>
+                <a href="{% url 'admin:products' category.pk %}{{ provider.previous_page_number }}">Previous</a>
             </button>
         {% endif %}
 
         {% if provider.has_next %}
             <button>
-                <a href="{% url 'admin:products' category.pk %}/{{ provider.next_page_number }}">Next</a>
+                <a href="{% url 'admin:products' category.pk %}{{ provider.next_page_number }}">Next</a>
             </button>
         {% endif %}
         <hr>
