@@ -3,8 +3,8 @@
 {% load custom_tags %}
 {% block content %}
     <hr>
-    <h1 class="{% if not user_profile.is_active %}not_is_active{% endif %}">
-        {{ user_profile.username|title }}
+    <h1 class="{% if not object_list.is_active %}not_is_active{% endif %}">
+        {{ object_list.username|title }}
     </h1>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
@@ -12,15 +12,15 @@
         <input type="submit" value="Save">
         <button>
             <a href="
-                        {% if user_profile %}
-                        {% url 'admin:user_read' user_profile.pk %}
+                        {% if object_list %}
+                        {% url 'admin:user_read' object_list.pk %}
                         {% else %}
                         {% url 'admin:users' %}
                         {% endif %}">Cancel
             </a>
         </button>
     </form>
-    {% if user_profile.avatar %}
+    {% if object_list.avatar %}
         <div class="background products__item user_avatar"
              style="background-image: url({{ user_profile.avatar|media_folder_files }}">
         </div>

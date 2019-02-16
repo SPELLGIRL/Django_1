@@ -4,14 +4,14 @@
 
 {% block content %}
     <div>
-        Уверены, что хотите удалить {{ user_profile.title }}?
-        <form action="{% url 'admin:user_delete' user_profile.pk %}"
+        Уверены, что хотите удалить {{ object.title }}?
+        <form action="{% url 'admin:user_delete' object.pk %}"
               method="post">
             {% csrf_token %}
             <input type="submit" value="Delete">
         </form>
         <button>
-            <a href="{% url 'admin:user_read' user_profile.pk %}">Cancel</a>
+            <a href="{% url 'admin:user_read' object.pk %}">Cancel</a>
         </button>
     </div>
 {% endblock %}

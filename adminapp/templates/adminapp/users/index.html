@@ -5,20 +5,20 @@
 
     <h1>Users list</h1>
     <a href="{% url 'admin:user_create' %}">Create</a>
-    {% if provider.has_previous %}
+    {% if page_obj.has_previous %}
         <button>
-            <a href="{% url 'admin:users' %}/{{ provider.previous_page_number }}">Previous</a>
+            <a href="{% url 'admin:users' %}/{{ page_obj.previous_page_number }}">Previous</a>
         </button>
     {% endif %}
-    {% if provider.has_next %}
+    {% if page_obj.has_next %}
         <button>
-            <a href="{% url 'admin:users' %}/{{ provider.next_page_number }}">Next</a>
+            <a href="{% url 'admin:users' %}/{{ page_obj.next_page_number }}">Next</a>
         </button>
     {% endif %}
     <ul>
-        {% for user_profile in provider %}
+        {% for user_profile in page_obj %}
             <li>
-                <a href="{% url 'admin:user_read' id=user_profile.id %}">
+                <a href="{% url 'admin:user_read' pk=user_profile.id %}">
                     <span class="
                         {% if not user_profile.is_active %}
                             not_is_active
