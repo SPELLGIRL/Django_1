@@ -1,5 +1,6 @@
 {% extends 'mainapp/base.html' %}
 {% load static %}
+{% load custom_tags %}
 
 {% block content %}
 
@@ -124,7 +125,7 @@
                                             {% if item.small_img_path %}
                                                 {{ item.small_img_path.url }}
                                             {% else %}
-                                                {{ item.big_img_path.url }}
+                                                {{ item.big_img_path|media_folder_files }}
                                             {% endif %}
                                             )">
                                 <h4 class="exclusive-h4">
@@ -152,7 +153,7 @@
                                 class="split-2__all exclusive-products split-2__2">
                             {% for item in exclusive_products %}
                                 {% if forloop.counter != 1 %}
-                                    {% if 1 < forloop.counter <= 5 %}
+                                    {% if forloop.counter <= 5 %}
                                         {% include 'mainapp/include/inc_product_preview.html' %}
                                     {% endif %}
                                 {% endif %}

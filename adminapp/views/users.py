@@ -1,16 +1,27 @@
 from django.http import HttpRequest, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, reverse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import user_passes_test
-from authapp.forms import RegisterForm, CustomUser
+from authapp.forms import RegisterForm
+from authapp.models import CustomUser
 from adminapp.models.users import UserEditForm
 
 
 @user_passes_test(lambda user: user.is_superuser)
-def index(request: HttpRequest):
+def index(request: HttpRequest, page=1):
     users = CustomUser.objects.all()
 
+    provider = Paginator(users, 10)
+
+    try:
+        products_provider = provider.page(page)
+    except PageNotAnInteger:
+        products_provider = provider.page(1)
+    except EmptyPage:
+        products_provider = provider.page(provider.num_pages)
+
     content = {
-        'models': users,
+        'page_obj': products_provider,
     }
 
     return render(request, 'adminapp/users/index.html', content)
@@ -36,19 +47,19 @@ def create(request: HttpRequest):
 
 
 @user_passes_test(lambda user: user.is_superuser)
-def read(request: HttpRequest, id):
-    user_profile = get_object_or_404(CustomUser, pk=id)
+def read(request: HttpRequest, pk):
+    user_profile = get_object_or_404(CustomUser, pk=pk)
     content = {
         'title': 'User view',
-        'user_profile': user_profile,
+        'object': user_profile,
     }
 
     return render(request, 'adminapp/users/read.html', content)
 
 
 @user_passes_test(lambda user: user.is_superuser)
-def update(request: HttpRequest, id):
-    user_profile = get_object_or_404(CustomUser, pk=id)
+def update(request: HttpRequest, pk):
+    user_profile = get_object_or_404(CustomUser, pk=pk)
 
     if request.method == 'POST':
         form = UserEditForm(request.POST, request.FILES,
@@ -63,15 +74,15 @@ def update(request: HttpRequest, id):
     content = {
         'title': 'Users update',
         'form': form,
-        'user_profile': user_profile,
+        'object': user_profile,
     }
 
     return render(request, 'adminapp/users/update.html', content)
 
 
 @user_passes_test(lambda user: user.is_superuser)
-def delete(request: HttpRequest, id):
-    user_profile = get_object_or_404(CustomUser, pk=id)
+def delete(request: HttpRequest, pk):
+    user_profile = get_object_or_404(CustomUser, pk=pk)
 
     if request.method == 'POST':
         user_profile.is_active = False
@@ -80,7 +91,7 @@ def delete(request: HttpRequest, id):
 
     content = {
         'title': 'Users delete',
-        'user_profile': user_profile,
+        'object': user_profile,
     }
 
     return render(request, 'adminapp/users/delete.html', content)

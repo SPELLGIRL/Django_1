@@ -1,10 +1,11 @@
 {% load static %}
+{% load custom_tags %}
 <div class="background products__item {% if size == 370 %} trendings__item {% endif %}"
      style="background-image: url(
              {% if item.small_img_path %}
                  {{ item.small_img_path.url }}
              {% else %}
-                 {{ item.big_img_path.url }}
+                 {{ item.big_img_path|media_folder_files }}
              {% endif %}
              )">
     <div class="background hhpb products__item {% if size == 370 %} trendings__item {% endif %} products__item_hover">

@@ -97,3 +97,4 @@ def edit(request: HttpRequest):
     inner_content = {**content, **inner_content}
 
     return render(request, 'authapp/edit.html', inner_content)
+

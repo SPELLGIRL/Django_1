@@ -20,14 +20,22 @@
                 </div>
                 <div class="trending-products">
                     {% with size=370 %}
-                        {% for item in catalog_menu_products %}
-                            {% if forloop.counter <= 12 %}
-                                {% include 'mainapp/include/inc_product_preview.html' %}
-                            {% endif %}
+                        {% for item in provider %}
+                            {% include 'mainapp/include/inc_product_preview.html' %}
                         {% endfor %}
                     {% endwith %}
                 </div>
-                <a href="#" class="refresh"><i class="fas fa-sync-alt"></i></a>
+                <div style="display: flex; align-self: center">
+                    {% if provider.has_previous %}
+                        <a href="
+                                {% url 'catalog:index' %}{{ current_product_category }}{{ provider.previous_page_number }}">Previous</a>
+                    {% endif %}
+                    <a href="#" class="refresh"><i class="fas fa-sync-alt"></i></a>
+                    {% if provider.has_next %}
+                        <a href="
+                                {% url 'catalog:index' %}{{ current_product_category }}{{ provider.next_page_number }}">Next</a>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>

@@ -1,5 +1,6 @@
 {% extends 'authapp/base.html' %}
 {% load static %}
+{% load custom_tags %}
 {% block content %}
     <form action="{% url 'auth:edit' %}"
           method="post" enctype="multipart/form-data" class="profile-form">
@@ -11,9 +12,7 @@
                    value="Save">
         </div>
     </form>
-    {% if user.avatar %}
-        <div class="background products__item user_avatar"
-             style="background-image: url(/media/{{ user.avatar }}">
-        </div>
-    {% endif %}
+    <div class="background products__item user_avatar"
+         style="background-image: url({{ user.avatar|media_folder_files }})">
+    </div>
 {% endblock %}
